@@ -16,34 +16,6 @@ public class DIYarrayList<T> implements List<T> {
         array = new Object[capacity];
     }
 
-    private void increaseCapacity() {
-        capacity = capacity * 2;
-        Object[] newArray = new Object[capacity];
-        for (int i = 0; i < size; i++) {
-            newArray[i] = array[i];
-            array[i] = null;
-        }
-        array = newArray;
-    }
-
-    private void trimToSizeArray() {
-        capacity = size + 1;
-        Object[] newArray = new Object[capacity];
-        System.arraycopy(array, 0, newArray, 0, size);
-        array = newArray;
-    }
-
-    private void shiftToLeft(int start) {
-        size--;
-        if (size <= 0) {
-            return;
-        }
-        if (size != start) {
-            System.arraycopy(array, start + 1, array, start, size - start);
-        }
-        array[size] = null;
-    }
-
     @Override
     public int size() {
         return size;
@@ -67,11 +39,12 @@ public class DIYarrayList<T> implements List<T> {
     }
 
     @Override
-    public boolean add(Object o) {
+    public boolean add(Object obj) {
         if (size >= capacity) {
             increaseCapacity();
         }
-        array[size++] = o;
+        array[size] = obj;
+        size++;
         return true;
     }
 
@@ -154,9 +127,9 @@ public class DIYarrayList<T> implements List<T> {
     }
 
     @Override
-    public void add(int index, Object element) {
+    public void add(int index, Object element) throws IndexOutOfBoundsException {
         if (index < 0) {
-            return;
+            throw new IndexOutOfBoundsException();
         }
         if (size + 1 >= capacity) {
             increaseCapacity();
@@ -383,6 +356,33 @@ public class DIYarrayList<T> implements List<T> {
         if (a.length > size)
             a[size] = null;
         return a;
+    }
+
+    private void increaseCapacity() {
+        capacity = capacity * 2;
+        Object[] newArray = new Object[capacity];
+        for (int i = 0; i < size; i++) {
+            newArray[i] = array[i];
+            array[i] = null;
+        }
+        array = newArray;
+    }
+
+    private void shiftToLeft(int start) {
+        size--;
+        if (size <= 0) {
+            return;
+        }
+        if (size != start) {
+            System.arraycopy(array, start + 1, array, start, size - start);
+        }
+        array[size] = null;
+    }
+    private void trimToSizeArray() {
+        capacity = size + 1;
+        Object[] newArray = new Object[capacity];
+        System.arraycopy(array, 0, newArray, 0, size);
+        array = newArray;
     }
 
 }
