@@ -1,13 +1,12 @@
 import java.lang.reflect.*;
 
 public class RunTests {
-	public RunTests (String testClass) {
+	public static void run (String testClass) {
 		int good = 0;
 		int bad = 0;
 		
-		ModuleLoader loader = new ModuleLoader("", ClassLoader.getSystemClassLoader());
 		try {
-			Class tc = loader.loadClass(testClass);
+			Class tc = Class.forName(testClass);
 		
 			try {
 				Constructor tcc = tc.getConstructor();
