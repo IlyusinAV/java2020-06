@@ -1,5 +1,12 @@
-import java.lang.reflect.*;
-import java.util.*;
+package hw03.testing.utils;
+
+import hw03.testing.annotations.*;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RunTests {
 	private static Class tc;

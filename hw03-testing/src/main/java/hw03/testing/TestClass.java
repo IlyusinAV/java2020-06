@@ -1,3 +1,8 @@
+package hw03.testing;
+
+import hw03.testing.annotations.*;
+import hw03.testing.exceptions.TestFailureException;
+
 public class TestClass {
 	private int a;
 	private int b;
