@@ -1,14 +1,19 @@
+package hw05.bytecode.utils;
+
+import hw05.bytecode.MyClassImpl;
+import hw05.bytecode.annotations.Log;
+import hw05.bytecode.interfaces.MyClassInterface;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-class MyProxy {
+public class MyProxy {
 
     private MyProxy() {
     }
 
-    static MyClassInterface createMyClass() {
+    public static MyClassInterface createMyClass() {
         InvocationHandler handler = new DemoInvocationHandler(new MyClassImpl());
         return (MyClassInterface) Proxy.newProxyInstance(MyProxy.class.getClassLoader(),
                 new Class<?>[]{MyClassInterface.class}, handler);

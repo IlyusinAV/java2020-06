@@ -1,3 +1,6 @@
+package hw05.bytecode.interfaces;
+
+import hw05.bytecode.annotations.Log;
 
 public interface MyClassInterface {
 

@@ -1,3 +1,6 @@
+package hw05.bytecode;
+
+import hw05.bytecode.interfaces.MyClassInterface;
 
 public class MyClassImpl implements MyClassInterface {
 
