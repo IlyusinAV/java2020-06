@@ -1,5 +1,20 @@
+<<<<<<< HEAD
+=======
+# Ignore IDEA files
+.idea
+
+>>>>>>> 70b8c81efb0605c93317612d62a215d4fcafb1ea
 # Ignore Gradle project-specific cache directory
 .gradle
 
 # Ignore Gradle build output directory
 build
+<<<<<<< HEAD
+=======
+
+# Ignore .class files
+*.class
+
+# Ignore Maven target directory
+target
+>>>>>>> 70b8c81efb0605c93317612d62a215d4fcafb1ea
