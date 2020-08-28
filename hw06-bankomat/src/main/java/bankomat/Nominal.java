@@ -1,12 +1,12 @@
 package bankomat;
 
 public enum Nominal {
-	CHIRIK,				//10
-	POLTINNIK,		//50
-	SOTKA,				//100
-	DVESTI,				//200
-	PYATIHATKA,		//500
-	SHTUKA,				//1000
+	PYATERKA,			//5000
 	VLADIK,				//2000
-	PYATERKA			//5000
+	SHTUKA,				//1000
+	PYATIHATKA,		//500
+	DVESTI,				//200
+	SOTKA,				//100
+	POLTINNIK,		//50
+	CHIRIK				//10
 }

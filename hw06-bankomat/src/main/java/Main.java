@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Arrays;
+
 import bankomat.*;
 
 class Main {
@@ -8,10 +9,11 @@ class Main {
 		System.out.println ("Amount is: " + bankomat1.getAmount());
 		
 		System.out.println("Loading cassettes");
-		bankomat1.loadATM(Nominal.VLADIK);
-		bankomat1.loadATM(Nominal.SHTUKA);
 		bankomat1.loadATM(Nominal.PYATIHATKA);
+		bankomat1.loadATM(Nominal.VLADIK);
 		bankomat1.loadATM(Nominal.SOTKA);
+		bankomat1.loadATM(Nominal.SHTUKA);
+
 		System.out.println ("Amount is: " + bankomat1.getAmount());
 		
 		System.out.println("Giving money");
@@ -23,8 +25,8 @@ class Main {
 		System.out.println("Taking money");
 		Nominal[] arr2 = {Nominal.SHTUKA, Nominal.SOTKA, Nominal.PYATIHATKA};
 		List<Nominal> banknotes = Arrays.asList(arr2);
-		bankomat1.income(banknotes);
 		System.out.println(banknotes);
+		bankomat1.income(banknotes);
 		System.out.println ("Amount is: " + bankomat1.getAmount());
 	}
 }

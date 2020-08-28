@@ -1,21 +1,22 @@
 package bankomat;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
-class Bankomat {
+public class Bankomat implements IBankomat {
 	private final int ATM_CAPACITY = 4;
-	private int number;
-	List<Cassette> cassettes = new ArrayList<>();
+	private final int number;
+	Map<Nominal,Cassette> cassettes = new EnumMap<>(Nominal.class);
 	
 	private Bankomat() {
+		this.number = 0;
 	}
 	
-	Bankomat(int number) {
+	public Bankomat(int number) {
 		if (number > 0 && number <= Integer.MAX_VALUE) {
 			this.number = number;
 			System.out.println ("ATM #" + number + " is alive");
 		} else {
+			this.number = 0;
 			System.out.println ("ATM must have real number");
 		}
 	}
@@ -23,7 +24,7 @@ class Bankomat {
 	public boolean loadATM (Nominal nominal) {
 		if (cassettes.size() < ATM_CAPACITY) {
 			Cassette cassette = new Cassette(nominal);
-			cassettes.add(cassette);
+			cassettes.put(nominal, cassette);
 			return true;
 		} else {
 			return false;
@@ -33,11 +34,9 @@ class Bankomat {
 	public boolean income (List<Nominal> banknotes) {
 		int amount;
 		for (Nominal banknote : banknotes) {
-			if (this.isNominalPresent(banknote)) {
-				Cassette cassette = this.findByNominal(banknote);
-				amount = cassette.getAmount();
-				amount++;
-				cassette.setAmount(amount);
+			if (cassettes.containsKey(banknote)) {
+				Cassette cassette = cassettes.get(banknote);
+				if (!cassette.cashin()) return false;
 			} else {
 				return false;
 			}
@@ -50,17 +49,19 @@ class Bankomat {
 		int vydano;
 		int cassetteamount;
 		List<Nominal> dispencer = new ArrayList<>();
-		for (Cassette cassette : cassettes) {
+		for (Nominal nominal : cassettes.keySet()) {
+			Cassette cassette = cassettes.get(nominal);
 			cassetteamount = cassette.getAmount();
-			Nominal nominal = cassette.getNominal();
-			vydano = ostatok / nominalToInt(nominal);
-			if (vydano > 0) {
-				for (int i=0; i<vydano; i++) {
-					dispencer.add(nominal);
+			if (cassetteamount > 0) {
+				vydano = ostatok / nominalToInt(nominal);
+				if (vydano > 0) {
+					if (cassette.dispence(vydano)) {
+						for (int i=0; i<vydano; i++) {
+							dispencer.add(nominal);
+						}
+						ostatok -= vydano * nominalToInt(nominal);
+					}
 				}
-				cassetteamount -= vydano;
-				cassette.setAmount(cassetteamount);
-				ostatok -= vydano * nominalToInt(nominal);
 			}
 		}
 		if (ostatok > 0) {
@@ -73,9 +74,9 @@ class Bankomat {
 	public int getAmount() {
 		int ostatok = 0;
 		int amount;
-		for (Cassette cassette : cassettes) {
+		for (Nominal nominal : cassettes.keySet()) {
+			Cassette cassette = cassettes.get(nominal);
 			amount = cassette.getAmount();
-			Nominal nominal = cassette.getNominal();
 			ostatok += amount * nominalToInt(nominal);
 		}
 		return ostatok;
@@ -112,17 +113,4 @@ class Bankomat {
 		return intNominal;
 	}	
 	
-	private boolean isNominalPresent (Nominal nominal) {
-		for (Cassette cassette : cassettes) {
-			if (cassette.getNominal().equals(nominal)) return true;
-		}
-		return false;
-	}
-
-	private Cassette findByNominal (Nominal nominal) {
-		for (Cassette cassette : cassettes) {
-			if (cassette.getNominal().equals(nominal)) return cassette;
-		}
-		return null;
-	}
 }
