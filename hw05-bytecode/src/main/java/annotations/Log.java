@@ -1,4 +1,4 @@
-package hw05.bytecode.annotations;
+package annotations;
 
 import java.lang.annotation.*;
 

@@ -1,13 +1,12 @@
-package hw05.bytecode;
 
-import hw05.bytecode.interfaces.MyClassInterface;
-import hw05.bytecode.utils.MyProxy;
+import interfaces.MyClassInterface;
+import utils.MyProxy;
 
 public class Main {
 
 	public static void main (String[] args) {
 		MyClassInterface myClass = MyProxy.createMyClass("MyClassImpl");
 
-		myClass.calculation (6,10);
+		myClass.calculation (6, 10);
 	}
 }

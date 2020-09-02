@@ -1,7 +1,6 @@
-package hw05.bytecode;
 
-import hw05.bytecode.annotations.Log;
-import hw05.bytecode.interfaces.MyClassInterface;
+import annotations.Log;
+import interfaces.MyClassInterface;
 
 public class MyClassImpl implements MyClassInterface {
 

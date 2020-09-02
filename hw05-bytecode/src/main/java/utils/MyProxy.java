@@ -1,49 +1,45 @@
-package hw05.bytecode.utils;
+package utils;
 
-import hw05.bytecode.MyClassImpl;
-import hw05.bytecode.annotations.Log;
-import hw05.bytecode.interfaces.MyClassInterface;
+import annotations.Log;
+import interfaces.MyClassInterface;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.*;
+import java.util.*;
 
 public class MyProxy {
+    static Class clazz = null;
+    static List<Method> annotatedMethods = new ArrayList<>();
+    static InvocationHandler handler = null;
 
     private MyProxy() {
     }
 
     public static MyClassInterface createMyClass(String myClassImpl) {
         try {
-            Class myClassImplClass = Class.forName(myClassImpl);
-            List<Method> annotatedMethods = new ArrayList<>();
-            Method[] methods = myClassImplClass.getDeclaredMethods();
+            clazz = Class.forName(myClassImpl);
+            Method[] methods = clazz.getDeclaredMethods();
             for (Method method : methods) {
                 if (method.isAnnotationPresent(Log.class)) annotatedMethods.add(method);
-            }
+            }            
+            handler = new DemoInvocationHandler((MyClassInterface) clazz.getDeclaredConstructor().newInstance());    
         } catch (Exception e) {
             System.out.println("Can't find class for logging");
         }
 
-        InvocationHandler handler = new DemoInvocationHandler(MyClassImplClass, annotatedMethods);
         return (MyClassInterface) Proxy.newProxyInstance(MyProxy.class.getClassLoader(),
                 new Class<?>[]{MyClassInterface.class}, handler);
     }
 
     static class DemoInvocationHandler implements InvocationHandler {
-        private final Class myClass;
-        private final List<Method> annotatedMethods;
+        private final MyClassInterface myClass;
 
-        DemoInvocationHandler(Class myClass, List<Method> annotatedMethods) {
+        DemoInvocationHandler(MyClassInterface myClass) {
             this.myClass = myClass;
-            this.annotatedMethods = annotatedMethods;
         }
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            if (annotatedMethods.indexOf(method) >= 0) {
+            if (isAnnotatedMethod(method)) {
                 System.out.print("executed method: " + method.getName());
                 for (int i = 0; i < args.length; i++) {
                     System.out.print(" param: " + args[i]);
@@ -51,6 +47,16 @@ public class MyProxy {
                 System.out.print("\n");
             }
             return method.invoke(myClass, args);
+        }
+        
+        private boolean isAnnotatedMethod (Method method) {
+            for (Method candidatMethod : annotatedMethods) {
+                if (candidatMethod.getName().equals(method.getName()) && 
+                    Arrays.equals(candidatMethod.getParameterTypes(), method.getParameterTypes())) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

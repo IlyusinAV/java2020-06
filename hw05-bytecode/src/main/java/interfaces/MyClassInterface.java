@@ -1,4 +1,4 @@
-package hw05.bytecode.interfaces;
+package interfaces;
 
 public interface MyClassInterface {
 
