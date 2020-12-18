@@ -18,7 +18,7 @@ repositories {
 }
 
 jar {
-    archiveBaseName.set('bankomat')
+    archiveBaseName.set('myJSON')
     archiveVersion.set('0.1')
     archiveClassifier.set('')
     manifest {

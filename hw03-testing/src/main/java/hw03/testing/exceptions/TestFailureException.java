@@ -1,4 +1,4 @@
-package hw03.testing.exceptions;
+package exceptions;
 
 public class TestFailureException extends Exception {
 
