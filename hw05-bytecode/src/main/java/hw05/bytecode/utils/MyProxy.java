@@ -1,6 +1,5 @@
 package hw05.bytecode.utils;
 
-import hw05.bytecode.MyClassImpl;
 import hw05.bytecode.annotations.Log;
 import hw05.bytecode.interfaces.MyClassInterface;
 
@@ -23,13 +22,15 @@ public class MyProxy {
             for (Method method : methods) {
                 if (method.isAnnotationPresent(Log.class)) annotatedMethods.add(method);
             }
+            InvocationHandler handler = new DemoInvocationHandler(myClassImplClass, annotatedMethods);
+            return (MyClassInterface) Proxy.newProxyInstance(MyProxy.class.getClassLoader(),
+                    new Class<?>[]{MyClassInterface.class}, handler);
+
         } catch (Exception e) {
             System.out.println("Can't find class for logging");
+            return null;
         }
 
-        InvocationHandler handler = new DemoInvocationHandler(MyClassImplClass, annotatedMethods);
-        return (MyClassInterface) Proxy.newProxyInstance(MyProxy.class.getClassLoader(),
-                new Class<?>[]{MyClassInterface.class}, handler);
     }
 
     static class DemoInvocationHandler implements InvocationHandler {

@@ -1,7 +1,7 @@
-package hw03.testing;
-
-import hw03.testing.annotations.*;
-import hw03.testing.exceptions.TestFailureException;
+import annotations.After;
+import annotations.Before;
+import annotations.Test;
+import exceptions.TestFailureException;
 
 public class TestClass {
 	private int a;

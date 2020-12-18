@@ -3,8 +3,12 @@ package utils;
 import annotations.Log;
 import interfaces.MyClassInterface;
 
-import java.lang.reflect.*;
-import java.util.*;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MyProxy {
     static Class clazz = null;
@@ -20,8 +24,8 @@ public class MyProxy {
             Method[] methods = clazz.getDeclaredMethods();
             for (Method method : methods) {
                 if (method.isAnnotationPresent(Log.class)) annotatedMethods.add(method);
-            }            
-            handler = new DemoInvocationHandler((MyClassInterface) clazz.getDeclaredConstructor().newInstance());    
+            }
+            handler = new DemoInvocationHandler((MyClassInterface) clazz.getDeclaredConstructor().newInstance());
         } catch (Exception e) {
             System.out.println("Can't find class for logging");
         }
@@ -48,11 +52,11 @@ public class MyProxy {
             }
             return method.invoke(myClass, args);
         }
-        
-        private boolean isAnnotatedMethod (Method method) {
+
+        private boolean isAnnotatedMethod(Method method) {
             for (Method candidatMethod : annotatedMethods) {
-                if (candidatMethod.getName().equals(method.getName()) && 
-                    Arrays.equals(candidatMethod.getParameterTypes(), method.getParameterTypes())) {
+                if (candidatMethod.getName().equals(method.getName()) &&
+                        Arrays.equals(candidatMethod.getParameterTypes(), method.getParameterTypes())) {
                     return true;
                 }
             }

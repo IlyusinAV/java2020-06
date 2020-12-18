@@ -1,6 +1,8 @@
-package hw03.testing.utils;
+package utils;
 
-import hw03.testing.annotations.*;
+import annotations.After;
+import annotations.Before;
+import annotations.Test;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
