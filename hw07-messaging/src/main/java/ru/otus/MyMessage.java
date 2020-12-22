@@ -2,7 +2,7 @@ package ru.otus;
 
 import java.util.Objects;
 
-public class MyMessage extends Message {
+public class MyMessage {
     private final String field1;
     private final String field2;
     private final String field3;
@@ -18,10 +18,59 @@ public class MyMessage extends Message {
     private final ObjectForMessage field13;
 
     private MyMessage(String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10, String field11, String field12, ObjectForMessage field13) {
-        super();
+        this.field1 = field1;
+        this.field2 = field2;
+        this.field3 = field3;
+        this.field4 = field4;
+        this.field5 = field5;
+        this.field6 = field6;
+        this.field7 = field7;
+        this.field8 = field8;
+        this.field9 = field9;
+        this.field10 = field10;
         this.field11 = field11;
         this.field12 = field12;
         this.field13 = field13;
+    }
+
+    public String getField1() {
+        return field1;
+    }
+
+    public String getField2() {
+        return field2;
+    }
+
+    public String getField3() {
+        return field3;
+    }
+
+    public String getField4() {
+        return field4;
+    }
+
+    public String getField5() {
+        return field5;
+    }
+
+    public String getField6() {
+        return field6;
+    }
+
+    public String getField7() {
+        return field7;
+    }
+
+    public String getField8() {
+        return field8;
+    }
+
+    public String getField9() {
+        return field9;
+    }
+
+    public String getField10() {
+        return field10;
     }
 
     public String getField11() {
@@ -38,33 +87,38 @@ public class MyMessage extends Message {
 
     @Override
     public boolean equals(Object o) {
-        if (field11 == null && field12 == null && field13 == null {
-            return super.equals(o);
-        } else{
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-            MyMessage message = (MyMessage) o;
+        MyMessage message = (MyMessage) o;
 
-            if (!Objects.equals(field1, message.field1)) return false;
-            if (!Objects.equals(field2, message.field2)) return false;
-            if (!Objects.equals(field3, message.field3)) return false;
-            if (!Objects.equals(field4, message.field4)) return false;
-            if (!Objects.equals(field5, message.field5)) return false;
-            if (!Objects.equals(field6, message.field6)) return false;
-            if (!Objects.equals(field7, message.field7)) return false;
-            if (!Objects.equals(field8, message.field8)) return false;
-            if (!Objects.equals(field9, message.field9)) return false;
-            if (!Objects.equals(field10, message.field10)) return false;
-            if (!Objects.equals(field11, message.field11)) return false;
-            if (!Objects.equals(field12, message.field12)) return false;
-            return Objects.equals(field13, message.field13);
-        }
+        if (!Objects.equals(field1, message.field1)) return false;
+        if (!Objects.equals(field2, message.field2)) return false;
+        if (!Objects.equals(field3, message.field3)) return false;
+        if (!Objects.equals(field4, message.field4)) return false;
+        if (!Objects.equals(field5, message.field5)) return false;
+        if (!Objects.equals(field6, message.field6)) return false;
+        if (!Objects.equals(field7, message.field7)) return false;
+        if (!Objects.equals(field8, message.field8)) return false;
+        if (!Objects.equals(field9, message.field9)) return false;
+        if (!Objects.equals(field10, message.field10)) return false;
+        if (!Objects.equals(field11, message.field11)) return false;
+        if (!Objects.equals(field12, message.field12)) return false;
+        return Objects.equals(field13, message.field13);
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = field1 != null ? field1.hashCode() : 0;
+        result = 31 * result + (field2 != null ? field2.hashCode() : 0);
+        result = 31 * result + (field3 != null ? field3.hashCode() : 0);
+        result = 31 * result + (field4 != null ? field4.hashCode() : 0);
+        result = 31 * result + (field5 != null ? field5.hashCode() : 0);
+        result = 31 * result + (field6 != null ? field6.hashCode() : 0);
+        result = 31 * result + (field7 != null ? field7.hashCode() : 0);
+        result = 31 * result + (field8 != null ? field8.hashCode() : 0);
+        result = 31 * result + (field9 != null ? field9.hashCode() : 0);
+        result = 31 * result + (field10 != null ? field10.hashCode() : 0);
         result = 31 * result + (field11 != null ? field11.hashCode() : 0);
         result = 31 * result + (field13 != null ? field13.hashCode() : 0);
         result = 31 * result + (field13 != null ? field13.hashCode() : 0);
@@ -94,7 +148,7 @@ public class MyMessage extends Message {
         return new MyBuilder(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13);
     }
 
-    public static class MyBuilder extends Builder {
+    public static class MyBuilder {
         private String field1;
         private String field2;
         private String field3;
@@ -175,7 +229,7 @@ public class MyMessage extends Message {
             return this;
         }
 
-        public MyBuilder field13(String field13) {
+        public MyBuilder field13(ObjectForMessage field13) {
             this.field13 = field13;
             return this;
         }
