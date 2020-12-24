@@ -26,7 +26,8 @@ public class HomeWork {
         var processors = List.of(new MyProcessorExchangeFields(),
                 new MyProcessorThrowException(new MyProcessorTee()));
 
-        var complexProcessor = new MyComplexProcessor(processors, (ex) -> {});
+        var complexProcessor = new MyComplexProcessor(processors, (ex) -> {
+        });
         var listenerPrinter = new MyListenerPrinter();
         complexProcessor.addListener(listenerPrinter);
 
@@ -38,8 +39,13 @@ public class HomeWork {
                 .field12("field12")
                 .build();
 
-        var result = complexProcessor.handle(message);
-        System.out.println("result:" + result);
+        MyMessage result = null;
+        try {
+            result = complexProcessor.handle(message);
+            System.out.println("result:" + result);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
 
         complexProcessor.removeListener(listenerPrinter);
     }

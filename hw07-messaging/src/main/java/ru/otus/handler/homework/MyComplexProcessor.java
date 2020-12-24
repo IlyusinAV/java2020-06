@@ -3,6 +3,7 @@ package ru.otus.handler.homework;
 import ru.otus.MyMessage;
 import ru.otus.listener.homework.MyListener;
 import ru.otus.processor.homework.MyProcessor;
+import ru.otus.processor.homework.exceptions.EvenSecondException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +20,13 @@ public class MyComplexProcessor implements MyHandler{
     }
 
     @Override
-    public MyMessage handle(MyMessage msg) {
+    public MyMessage handle(MyMessage msg) throws Throwable {
         MyMessage newMsg = msg;
         for (MyProcessor pros : processors) {
             try {
                 newMsg = pros.process(newMsg);
             } catch (Exception ex) {
-                errorHandler.accept(ex);
+                throw new EvenSecondException(ex.getMessage());
             }
         }
         notify(msg, newMsg);

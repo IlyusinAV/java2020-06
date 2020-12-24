@@ -1,5 +1,6 @@
 package ru.otus;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class MyMessage {
@@ -139,7 +140,7 @@ public class MyMessage {
                 ", field9='" + field9 + '\'' +
                 ", field10='" + field10 + '\'' +
                 ", field11='" + field11 + '\'' +
-                ", field12='" + field11 + '\'' +
+                ", field12='" + field12 + '\'' +
                 ", field13='" + field13 + '\'' +
                 '}';
     }
