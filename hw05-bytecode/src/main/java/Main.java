@@ -1,6 +1,6 @@
 
 import interfaces.MyClassInterface;
-import utils.MyProxy;
+import ru.ilyusin.utils.MyProxy;
 
 public class Main {
 
