@@ -1,8 +1,7 @@
 package ru.ilyusin.utils;
 
 import java.lang.reflect.Field;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class MyGson implements IMyGson {
     private StringBuilder strJson = new StringBuilder();
@@ -17,26 +16,48 @@ public class MyGson implements IMyGson {
         }
 
         Class<?> c = obj.getClass();
-        while (c != null) {
-            Field[] afields = c.getDeclaredFields();
-            for (Field field : afields) {
-                field.setAccessible(true);
-                fields.put(field, c.getSimpleName());
-            }
-            c = c.getSuperclass();
-        }
+        String cname = c.getSimpleName();
+        boolean isArray = cname.contains("[]");
+        switch (cname) {
+            case "Byte":
+            case "Short":
+            case "Integer":
+            case "Long":
+            case "Float":
+            case "Double":
+            case "List":
+            case "ListN":
+            case "SingletonList":
+                return obj.toString();
+            case "Character":
+            case "String":
+                return "\"" + obj + "\"";
+            default:
+                if (isArray) {
+                    return obj.toString();
+                } else {
+                    while (c != null) {
+                        Field[] afields = c.getDeclaredFields();
+                        for (Field field : afields) {
+                            field.setAccessible(true);
+                            fields.put(field, c.getSimpleName());
+                        }
+                        c = c.getSuperclass();
+                    }
 
-        for (Field field : fields.keySet()) {
-            if (!currentClass.toString().equals(" ")) {
-                putFieldToJSON(obj, field);
-            } else {
-                currentClass.delete(0, 1);
-                strJson.append("{");
-                putFirstFieldToJSON(obj, field);
-            }
+                    for (Field field : fields.keySet()) {
+                        if (!currentClass.toString().equals(" ")) {
+                            putFieldToJSON(obj, field);
+                        } else {
+                            currentClass.delete(0, 1);
+                            strJson.append("{");
+                            putFirstFieldToJSON(obj, field);
+                        }
+                    }
+                    strJson.append("}");
+                    return strJson.toString();
+                }
         }
-        strJson.append("}");
-        return strJson.toString();
     }
 
     private void putFirstFieldToJSON(Object obj, Field field) {
@@ -70,7 +91,7 @@ public class MyGson implements IMyGson {
                     strJson.append(field.get(obj).toString());
                     strJson.append("\"");
                     break;
-                case "Char":
+                case "Character":
                 case "String":
                     strJson.append("\"");
                     strJson.append(field.get(obj));
