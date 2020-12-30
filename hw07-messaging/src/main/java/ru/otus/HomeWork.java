@@ -1,10 +1,10 @@
 package ru.otus;
 
-import ru.otus.handler.homework.MyComplexProcessor;
-import ru.otus.listener.homework.MyListenerPrinter;
-import ru.otus.processor.homework.MyProcessorExchangeFields;
-import ru.otus.processor.homework.MyProcessorTee;
-import ru.otus.processor.homework.MyProcessorThrowException;
+import ru.otus.handler.ComplexProcessor;
+import ru.otus.listener.homework.ListenerStorage;
+import ru.otus.processor.Processor;
+import ru.otus.processor.homework.ProcessorExchangeFields;
+import ru.otus.processor.homework.ProcessorThrowException;
 
 import java.util.List;
 
@@ -23,23 +23,25 @@ public class HomeWork {
            по аналогии с Demo.class
            из элеменов "to do" создать new ComplexProcessor и обработать сообщение
          */
-        var processors = List.of(new MyProcessorExchangeFields(),
-                new MyProcessorThrowException(new MyProcessorTee()));
+        var processors = List.of(new ProcessorExchangeFields(),
+                new ProcessorThrowException());
 
-        var complexProcessor = new MyComplexProcessor(processors, (ex) -> {
+        var complexProcessor = new ComplexProcessor(processors, (ex) -> {
         });
-        var listenerPrinter = new MyListenerPrinter();
+        var listenerPrinter = new ListenerStorage();
         complexProcessor.addListener(listenerPrinter);
-
-        var message = new MyMessage.MyBuilder()
+        var objectForMessage = new ObjectForMessage();
+        objectForMessage.setData(List.of("a", "b", "c"));
+        var message = new Message.Builder()
                 .field1("field1")
                 .field2("field2")
                 .field3("field3")
                 .field11("field11")
                 .field12("field12")
+                .field13(objectForMessage)
                 .build();
 
-        MyMessage result = null;
+        Message result = null;
         try {
             result = complexProcessor.handle(message);
             System.out.println("result:" + result);
