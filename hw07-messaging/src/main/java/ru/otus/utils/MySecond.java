@@ -3,8 +3,10 @@ package ru.otus.utils;
 import java.time.LocalTime;
 
 public class MySecond {
-    public int currentSecond() {
-        var now = LocalTime.now();
-        return now.getSecond();
+    public static int currentSecond;
+
+    public static void getCurrentSecond() {
+        LocalTime now = LocalTime.now();
+        currentSecond = now.getSecond();
     }
 }

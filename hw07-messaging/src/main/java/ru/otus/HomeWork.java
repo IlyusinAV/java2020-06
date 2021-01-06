@@ -2,9 +2,9 @@ package ru.otus;
 
 import ru.otus.handler.ComplexProcessor;
 import ru.otus.listener.homework.ListenerStorage;
-import ru.otus.processor.Processor;
 import ru.otus.processor.homework.ProcessorExchangeFields;
 import ru.otus.processor.homework.ProcessorThrowException;
+import ru.otus.utils.MySecond;
 
 import java.util.List;
 
@@ -42,6 +42,7 @@ public class HomeWork {
                 .build();
 
         Message result = null;
+        MySecond.getCurrentSecond();
         try {
             result = complexProcessor.handle(message);
             System.out.println("result:" + result);
