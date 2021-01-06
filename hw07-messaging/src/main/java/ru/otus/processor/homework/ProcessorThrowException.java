@@ -11,18 +11,9 @@ public class ProcessorThrowException implements Processor {
 
     @Override
     public Message process(Message message) {
-        if (getCurrentSecond() % 2 == 0) {
-            try {
-                throw new EvenSecondException("Even second");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (MySecond.currentSecond % 2 == 0) {
+            throw new RuntimeException("Even second");
         }
         return message;
-    }
-
-    int getCurrentSecond() {
-        var mySecond = new MySecond();
-        return mySecond.currentSecond();
     }
 }
