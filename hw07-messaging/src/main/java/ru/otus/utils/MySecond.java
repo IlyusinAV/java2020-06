@@ -3,10 +3,11 @@ package ru.otus.utils;
 import java.time.LocalTime;
 
 public class MySecond {
-    public static int currentSecond;
+    private static int currentSecond;
 
-    public static void getCurrentSecond() {
+    public static int getCurrentSecond() {
         LocalTime now = LocalTime.now();
         currentSecond = now.getSecond();
+        return currentSecond;
     }
 }

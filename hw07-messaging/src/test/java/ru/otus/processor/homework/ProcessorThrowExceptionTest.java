@@ -7,6 +7,8 @@ import ru.otus.ObjectForMessage;
 import ru.otus.utils.MySecond;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.spy;
 
 public class ProcessorThrowExceptionTest {
 
@@ -16,9 +18,9 @@ public class ProcessorThrowExceptionTest {
         //before
         var message = new Message.Builder().field13(new ObjectForMessage()).build();
 
-        MySecond.currentSecond = 2;
+        var processor = spy(ProcessorThrowException.class);
+        when (processor.getCurrentSecond()).thenReturn(2);
 
-        var processor = new ProcessorThrowException();
         //test
         assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> processor.process(message));
 
