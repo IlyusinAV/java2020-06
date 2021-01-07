@@ -41,10 +41,8 @@ public class HomeWork {
                 .field13(objectForMessage)
                 .build();
 
-        Message result = null;
-        MySecond.getCurrentSecond();
         try {
-            result = complexProcessor.handle(message);
+            Message result = complexProcessor.handle(message);
             System.out.println("result:" + result);
         } catch (Throwable throwable) {
             throwable.printStackTrace();
