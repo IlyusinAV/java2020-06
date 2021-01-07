@@ -2,6 +2,7 @@ package ru.ilyusin.utils;
 
 import java.lang.reflect.Field;
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class MyGson implements IMyGson {
     private StringBuilder strJson = new StringBuilder();
@@ -12,7 +13,7 @@ public class MyGson implements IMyGson {
         var currentClass = new StringBuilder(" ");
 
         if (obj == null) {
-            return null;
+            return "null";
         }
 
         Class<?> c = obj.getClass();
@@ -28,13 +29,13 @@ public class MyGson implements IMyGson {
             case "List":
             case "ListN":
             case "SingletonList":
-                return obj.toString();
+                return obj.toString().replace(" ", "");
             case "Character":
             case "String":
                 return "\"" + obj + "\"";
             default:
                 if (isArray) {
-                    return obj.toString();
+                    return arrayToString(obj, cname);
                 } else {
                     while (c != null) {
                         Field[] afields = c.getDeclaredFields();
@@ -77,6 +78,8 @@ public class MyGson implements IMyGson {
     private void putValueToJSON(Object obj, Field field) {
         try {
             switch (field.getType().getSimpleName()) {
+                case "byte":
+                case "short":
                 case "int":
                 case "Byte":
                 case "Short":
@@ -84,6 +87,8 @@ public class MyGson implements IMyGson {
                     strJson.append(field.get(obj).toString());
                     break;
                 case "long":
+                case "float":
+                case "double":
                 case "Long":
                 case "Float":
                 case "Double":
@@ -91,6 +96,7 @@ public class MyGson implements IMyGson {
                     strJson.append(field.get(obj).toString());
                     strJson.append("\"");
                     break;
+                case "char":
                 case "Character":
                 case "String":
                     strJson.append("\"");
@@ -99,7 +105,7 @@ public class MyGson implements IMyGson {
                     break;
                 case "List":
                 case "Set":
-                    strJson.append(field.get(obj).toString());
+                    strJson.append(field.get(obj).toString().replace(" ", ""));
                     break;
                 default:
                     break;
@@ -107,5 +113,37 @@ public class MyGson implements IMyGson {
         } catch (Exception e) {
             System.out.println("Can't access field");
         }
+    }
+
+    private String arrayToString(Object obj, String className) {
+        StringBuilder result = new StringBuilder();
+        switch (className) {
+            case "int[]":
+                int[] intArr = (int[]) obj;
+                Integer[] intBoxed = IntStream.of(intArr).boxed().toArray(Integer[]::new);
+                result.append("[");
+                for (Integer integer : intBoxed) {
+                    result.append(integer);
+                    result.append(",");
+                }
+                result.append("]");
+                break;
+            case "char[]":
+                char[] charArr = (char[]) obj;
+                Character[] charBoxed = IntStream.range(0, charArr.length)
+                        .mapToObj(i -> charArr[i])
+                        .toArray(Character[]::new);
+                result.append("[");
+                for (Character character : charBoxed) {
+                    result.append("\"");
+                    result.append(character);
+                    result.append("\",");
+                }
+                result.append("]");
+                break;
+            default:
+                break;
+        }
+        return result.toString().replace(",]", "]");
     }
 }
