@@ -1,4 +1,4 @@
-package utils;
+package ru.ilyusin.utils;
 
 import annotations.Log;
 import interfaces.MyClassInterface;
