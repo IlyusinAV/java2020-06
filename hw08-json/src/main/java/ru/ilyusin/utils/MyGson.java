@@ -18,7 +18,6 @@ public class MyGson implements IMyGson {
 
         Class<?> c = obj.getClass();
         String cname = c.getSimpleName();
-        boolean isArray = cname.contains("[]");
         switch (cname) {
             case "Byte":
             case "Short":
@@ -34,7 +33,7 @@ public class MyGson implements IMyGson {
             case "String":
                 return "\"" + obj + "\"";
             default:
-                if (isArray) {
+                if (c.isArray()) {
                     return arrayToString(obj, cname);
                 } else {
                     while (c != null) {
