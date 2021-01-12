@@ -1,10 +1,11 @@
 package ru.otus;
 
 import ru.otus.handler.ComplexProcessor;
-import ru.otus.listener.homework.ListenerStorage;
+import ru.otus.listener.homework.HistoryStorage;
+import ru.otus.listener.homework.ListenerHistory;
 import ru.otus.processor.homework.ProcessorExchangeFields;
 import ru.otus.processor.homework.ProcessorThrowException;
-import ru.otus.utils.MySecond;
+import ru.otus.processor.homework.MySecond;
 
 import java.util.List;
 
@@ -24,12 +25,12 @@ public class HomeWork {
            из элеменов "to do" создать new ComplexProcessor и обработать сообщение
          */
         var processors = List.of(new ProcessorExchangeFields(),
-                new ProcessorThrowException());
+                new ProcessorThrowException(new MySecond()));
 
         var complexProcessor = new ComplexProcessor(processors, (ex) -> {
         });
-        var listenerPrinter = new ListenerStorage();
-        complexProcessor.addListener(listenerPrinter);
+        var listenerHistory = new ListenerHistory(new HistoryStorage());
+        complexProcessor.addListener(listenerHistory);
         var objectForMessage = new ObjectForMessage();
         objectForMessage.setData(List.of("a", "b", "c"));
         var message = new Message.Builder()
@@ -40,14 +41,16 @@ public class HomeWork {
                 .field12("field12")
                 .field13(objectForMessage)
                 .build();
+        var messageBackup = message;
 
         try {
             Message result = complexProcessor.handle(message);
             System.out.println("result:" + result);
+            System.out.println("backup:" + messageBackup);
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
 
-        complexProcessor.removeListener(listenerPrinter);
+        complexProcessor.removeListener(listenerHistory);
     }
 }
