@@ -18,11 +18,5 @@ class Main {
         }
 
         t2.start();
-
-        try {
-            t2.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
