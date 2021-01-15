@@ -17,7 +17,7 @@ public class ProcessorThrowExceptionTest {
         //before
         var message = new Message.Builder().field13(new ObjectForMessage()).build();
 
-        var currentSecond = mock(MySecond.class);
+        var currentSecond = mock(CurrentSecondProvider.class);
         when(currentSecond.getCurrentSecond()).thenReturn(2);
 
         var processor = new ProcessorThrowException(currentSecond);

@@ -1,10 +1,11 @@
 package ru.otus;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import com.google.common.base.Optional;
 
-public class Message {
+public class Message implements Serializable {
     private final String field1;
     private final String field2;
     private final String field3;

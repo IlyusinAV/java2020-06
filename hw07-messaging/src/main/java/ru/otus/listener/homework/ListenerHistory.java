@@ -15,7 +15,7 @@ public class ListenerHistory implements Listener {
 
     @Override
     public void onUpdated(Message oldMsg, Message newMsg) {
-        historyStorage.setHistoryStorage(oldMsg);
+        historyStorage.addHistoryItem(oldMsg);
         System.out.println("Stored:" + historyStorage.getHistoryStorage());
     }
 }
