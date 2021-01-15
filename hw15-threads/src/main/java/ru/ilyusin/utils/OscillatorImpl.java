@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class OscillatorImpl implements Oscillator {
     private static final int WAVELENGTH = 18;
     private static final int PERIODS = 2;
-    private List<Integer> oscillation = new ArrayList<>();
+    private final List<Integer> oscillation = new ArrayList<>();
 
     public OscillatorImpl() {
         IntStream natural = IntStream.iterate(1, i -> i + 1);
@@ -25,14 +25,22 @@ public class OscillatorImpl implements Oscillator {
     }
 
     public void run() throws ExecutionException, InterruptedException {
+        var forkJoinPool = new ForkJoinPool();
+        ForkJoinTask<String> futureTask = new RecursiveTask<String>() {
+            @Override
+            protected String compute() {
+                return outWave();
+            }
+        };
         for (int i = 0; i < PERIODS; i++) {
-            outWave();
+            forkJoinPool.submit(futureTask);
+            System.out.print(futureTask.get());
         }
-
         System.out.print("\n");
     }
 
-    private void outWave() {
+    private String outWave() {
+        StringBuilder wave = new StringBuilder();
         Executor service = Executors.newSingleThreadExecutor();
         CompletableFuture[] tasks = new CompletableFuture[WAVELENGTH];
         IntStream.range(0, WAVELENGTH).forEach(i -> {
@@ -41,11 +49,11 @@ public class OscillatorImpl implements Oscillator {
             tasks[i] = CompletableFuture.supplyAsync(task, service);
         });
 
-        CompletableFuture<Void> allFutures = CompletableFuture.allOf(tasks);
-        allFutures.thenRun(() -> {
+        CompletableFuture<Void> allTasks = CompletableFuture.allOf(tasks);
+        allTasks.thenRun(() -> {
             Arrays.stream(tasks).forEach(result -> {
                 try {
-                    System.out.print(result.get());
+                    wave.append(result.get());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -53,7 +61,7 @@ public class OscillatorImpl implements Oscillator {
                 }
             });
         });
-
+        return wave.toString();
     }
 
     private String getItem(int i) {
