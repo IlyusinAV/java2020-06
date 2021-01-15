@@ -4,15 +4,15 @@ import ru.otus.Message;
 import ru.otus.processor.Processor;
 
 public class ProcessorThrowException implements Processor {
-    private MySecond currentSecond;
+    private final CurrentSecondProvider localTime;
 
-    public ProcessorThrowException(MySecond currentSecond) {
-        this.currentSecond = currentSecond;
+    public ProcessorThrowException(CurrentSecondProvider localTime) {
+        this.localTime = localTime;
     }
 
     @Override
     public Message process(Message message) {
-        if (currentSecond.getCurrentSecond() % 2 == 0) {
+        if (localTime.getCurrentSecond() % 2 == 0) {
             throw new RuntimeException("Even second");
         }
         return message;

@@ -6,13 +6,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class HistoryStorage {
-    private List<Message> historyStorage = new LinkedList<>();
+    private final List<Message> historyStorage = new LinkedList<>();
 
     public List<Message> getHistoryStorage() {
         return historyStorage;
     }
 
-    public void setHistoryStorage(Message message) {
+    public void addHistoryItem(Message message) {
         this.historyStorage.add(message);
     }
 }
