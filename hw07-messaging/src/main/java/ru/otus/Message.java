@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import com.google.common.base.Optional;
 
-public class Message implements Serializable {
+public class Message {
     private final String field1;
     private final String field2;
     private final String field3;
@@ -319,7 +319,9 @@ public class Message implements Serializable {
             if (field11 == null && field12 == null && field13 == null) {
                 return new Message(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10);
             } else {
-                return new Message(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13);
+                var field13Backup = new ObjectForMessage();
+                field13Backup.setData(field13.getData());
+                return new Message(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13Backup);
             }
         }
     }
