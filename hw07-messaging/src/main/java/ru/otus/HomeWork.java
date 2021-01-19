@@ -43,22 +43,6 @@ public class HomeWork {
                 .field12("field12")
                 .field13(objectForMessage)
                 .build();
-        var messageBackup = message;
-
-        // подумайте, как сделать, чтобы сообщения не портились
-        try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ObjectOutputStream ous = new ObjectOutputStream(baos);
-            ous.writeObject(message);
-            ous.close();
-            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-            ObjectInputStream ois = new ObjectInputStream(bais);
-            messageBackup = (Message) ois.readObject();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        } catch (ClassNotFoundException cnfe) {
-            cnfe.printStackTrace();
-        }
 
         try {
             Message result = complexProcessor.handle(message);
@@ -68,7 +52,6 @@ public class HomeWork {
             System.out.println(historyStorage.getHistoryStorage().get(0).getField13().getData());
 
             System.out.println("result:" + result);
-            System.out.println("backup:" + messageBackup);
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
