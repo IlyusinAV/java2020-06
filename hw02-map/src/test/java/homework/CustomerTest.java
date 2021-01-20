@@ -14,7 +14,6 @@ class CustomerTest {
     // Все тесты должны проходить, менять тесты не надо.
 
     @Test
-    @Disabled //эту аннотацию надо убрать
     @DisplayName("Объект Customer как ключ в карте")
     void customerAsKeyTest() {
         //given
@@ -42,7 +41,6 @@ class CustomerTest {
     }
 
     @Test
-    @Disabled //эту аннотацию надо убрать
     @DisplayName("Сортировка по полю score, итерация по возрастанию")
     void scoreSortingTest() {
         //given
@@ -80,7 +78,6 @@ class CustomerTest {
     }
 
     @Test
-    @Disabled //эту аннотацию надо убрать
     @DisplayName("Модификация коллекции")
     void mutationTest() {
         //given
