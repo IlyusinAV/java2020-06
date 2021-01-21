@@ -21,8 +21,11 @@ public class CustomerService {
 
     public Map.Entry<Customer, String> getNext(Customer customer) {
         TreeMap<Customer, String> nextEntry = new TreeMap<>();
-        var nextValue = customerService.higherEntry(customer).getValue();
-        nextEntry.put(customer, nextValue);
+        var nextItem = customerService.higherEntry(customer);
+        if (nextItem == null) return null;
+        var nextKey = nextItem.getKey();
+        var nextValue = nextItem.getValue();
+        nextEntry.put(nextKey, nextValue);
         return nextEntry.firstEntry();
     }
 

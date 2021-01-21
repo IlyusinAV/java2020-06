@@ -99,7 +99,6 @@ class CustomerTest {
     }
 
     @Test
-    @Disabled //эту аннотацию надо убрать
     @DisplayName("Возвращание в обратном порядке")
     void reverseOrderTest() {
         //given
