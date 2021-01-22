@@ -1,6 +1,9 @@
 package ru.otus;
 
+import java.io.Serializable;
 import java.util.Objects;
+
+import com.google.common.base.Optional;
 
 public class Message {
     private final String field1;
@@ -15,6 +18,10 @@ public class Message {
     private final String field10;
 
     //todo: 1. Добавить поля field11 - field13 (для field13 используйте класс ObjectForMessage)
+    private final String field11;
+    private final String field12;
+    private ObjectForMessage field13;
+
 
     private Message(String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10) {
         this.field1 = field1;
@@ -27,6 +34,26 @@ public class Message {
         this.field8 = field8;
         this.field9 = field9;
         this.field10 = field10;
+
+        this.field11 = null;
+        this.field12 = null;
+        this.field13 = null;
+    }
+
+    private Message(String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10, String field11, String field12, ObjectForMessage field13) {
+        this.field1 = field1;
+        this.field2 = field2;
+        this.field3 = field3;
+        this.field4 = field4;
+        this.field5 = field5;
+        this.field6 = field6;
+        this.field7 = field7;
+        this.field8 = field8;
+        this.field9 = field9;
+        this.field10 = field10;
+        this.field11 = field11;
+        this.field12 = field12;
+        this.field13 = field13;
     }
 
     public String getField1() {
@@ -69,12 +96,29 @@ public class Message {
         return field10;
     }
 
+    // Геттеры для новых полей
+    public String getField11() {
+        return field11;
+    }
+
+    public String getField12() {
+        return field12;
+    }
+
+    public ObjectForMessage getField13() {
+        return field13;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Message message = (Message) o;
+
+        Optional<String> f11 = Optional.fromNullable(message.field11);
+        Optional<String> f12 = Optional.fromNullable(message.field12);
+        Optional<ObjectForMessage> f13 = Optional.fromNullable(message.field13);
 
         if (!Objects.equals(field1, message.field1)) return false;
         if (!Objects.equals(field2, message.field2)) return false;
@@ -85,7 +129,12 @@ public class Message {
         if (!Objects.equals(field7, message.field7)) return false;
         if (!Objects.equals(field8, message.field8)) return false;
         if (!Objects.equals(field9, message.field9)) return false;
-        return Objects.equals(field10, message.field10);
+        if (!Objects.equals(field10, message.field10)) return false;
+
+        // С учетом новой структуры message
+        if (!Objects.equals(field11, f11.or((String) null))) return false;
+        if (!Objects.equals(field12, f12.or((String) null))) return false;
+        return (!Objects.equals(field13, f13.or((ObjectForMessage) null)));
     }
 
     @Override
@@ -100,27 +149,54 @@ public class Message {
         result = 31 * result + (field8 != null ? field8.hashCode() : 0);
         result = 31 * result + (field9 != null ? field9.hashCode() : 0);
         result = 31 * result + (field10 != null ? field10.hashCode() : 0);
+
+        // С учетом новых полей
+        result = 31 * result + (field11 != null ? field11.hashCode() : 0);
+        result = 31 * result + (field13 != null ? field13.hashCode() : 0);
+        result = 31 * result + (field13 != null ? field13.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "Message{" +
-                "field1='" + field1 + '\'' +
-                ", field2='" + field2 + '\'' +
-                ", field3='" + field3 + '\'' +
-                ", field4='" + field4 + '\'' +
-                ", field5='" + field5 + '\'' +
-                ", field6='" + field6 + '\'' +
-                ", field7='" + field7 + '\'' +
-                ", field8='" + field8 + '\'' +
-                ", field9='" + field9 + '\'' +
-                ", field10='" + field10 + '\'' +
-                '}';
+        if (field11 == null && field12 == null && field13 == null) {
+            return "Message{" +
+                    "field1='" + field1 + '\'' +
+                    ", field2='" + field2 + '\'' +
+                    ", field3='" + field3 + '\'' +
+                    ", field4='" + field4 + '\'' +
+                    ", field5='" + field5 + '\'' +
+                    ", field6='" + field6 + '\'' +
+                    ", field7='" + field7 + '\'' +
+                    ", field8='" + field8 + '\'' +
+                    ", field9='" + field9 + '\'' +
+                    ", field10='" + field10 + '\'' +
+                    '}';
+        } else {
+            return "Message{" +
+                    "field1='" + field1 + '\'' +
+                    ", field2='" + field2 + '\'' +
+                    ", field3='" + field3 + '\'' +
+                    ", field4='" + field4 + '\'' +
+                    ", field5='" + field5 + '\'' +
+                    ", field6='" + field6 + '\'' +
+                    ", field7='" + field7 + '\'' +
+                    ", field8='" + field8 + '\'' +
+                    ", field9='" + field9 + '\'' +
+                    ", field10='" + field10 + '\'' +
+                    ", field11='" + field11 + '\'' +
+                    ", field12='" + field12 + '\'' +
+                    ", field13='" + field13.getData().toString() + '\'' +
+                    '}';
+        }
     }
 
     public Builder toBuilder() {
-        return new Builder(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10);
+        if (field11 == null && field12 == null && field13 == null) {
+            return new Builder(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10);
+        } else {
+            return new Builder(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13);
+        }
     }
 
     public static class Builder {
@@ -134,6 +210,12 @@ public class Message {
         private String field8;
         private String field9;
         private String field10;
+
+        //Новые поля
+        private String field11;
+        private String field12;
+        private ObjectForMessage field13;
+
 
         public Builder() {
         }
@@ -149,6 +231,22 @@ public class Message {
             this.field8 = field8;
             this.field9 = field9;
             this.field10 = field10;
+        }
+
+        private Builder(String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10, String field11, String field12, ObjectForMessage field13) {
+            this.field1 = field1;
+            this.field2 = field2;
+            this.field3 = field3;
+            this.field4 = field4;
+            this.field5 = field5;
+            this.field6 = field6;
+            this.field7 = field7;
+            this.field8 = field8;
+            this.field9 = field9;
+            this.field10 = field10;
+            this.field11 = field11;
+            this.field12 = field12;
+            this.field13 = field13;
         }
 
         public Builder field1(String field1) {
@@ -201,8 +299,28 @@ public class Message {
             return this;
         }
 
+        // С учетом новых полей
+        public Builder field11(String field11) {
+            this.field11 = field11;
+            return this;
+        }
+
+        public Builder field12(String field12) {
+            this.field12 = field12;
+            return this;
+        }
+
+        public Builder field13(ObjectForMessage field13) {
+            this.field13 = field13;
+            return this;
+        }
+
         public Message build() {
-            return new Message(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10);
+            if (field11 == null && field12 == null && field13 == null) {
+                return new Message(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10);
+            } else {
+                return new Message(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13);
+            }
         }
     }
 }
