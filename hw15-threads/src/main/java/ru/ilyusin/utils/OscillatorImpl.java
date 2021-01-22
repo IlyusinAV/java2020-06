@@ -24,43 +24,36 @@ public class OscillatorImpl implements Oscillator {
                 .forEach(oscillation::add);
     }
 
-    public void run() throws ExecutionException, InterruptedException {
+    public void run() {
         var forkJoinPool = new ForkJoinPool();
-        ForkJoinTask<String> futureTask = new RecursiveTask<String>() {
-            @Override
-            protected String compute() {
-                return outWave();
-            }
-        };
         for (int i = 0; i < PERIODS; i++) {
+            RecursiveTask<String> futureTask = new RecursiveTask<>() {
+                @Override
+                protected String compute() {
+                    return makeWave();
+                }
+            };
             forkJoinPool.submit(futureTask);
-            System.out.print(futureTask.get());
+            System.out.print(futureTask.join());
         }
         System.out.print("\n");
     }
 
-    private String outWave() {
+    private String makeWave() {
         StringBuilder wave = new StringBuilder();
-        Executor service = Executors.newSingleThreadExecutor();
+        ExecutorService service = Executors.newSingleThreadExecutor();
         CompletableFuture[] tasks = new CompletableFuture[WAVELENGTH];
         IntStream.range(0, WAVELENGTH).forEach(i -> {
-            int finalI = i;
+            var finalI = i;
             Supplier<String> task = () -> getItem(finalI);
             tasks[i] = CompletableFuture.supplyAsync(task, service);
         });
 
-        CompletableFuture<Void> allTasks = CompletableFuture.allOf(tasks);
-        allTasks.thenRun(() -> {
-            Arrays.stream(tasks).forEach(result -> {
-                try {
-                    wave.append(result.get());
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
-            });
-        });
+        CompletableFuture.allOf(tasks)
+                .thenRun(() -> Arrays.stream(tasks).forEach(result -> wave.append(result.join())));
+
+        service.shutdown();
+
         return wave.toString();
     }
 
