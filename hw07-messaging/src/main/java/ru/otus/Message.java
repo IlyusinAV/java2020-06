@@ -319,9 +319,7 @@ public class Message {
             if (field11 == null && field12 == null && field13 == null) {
                 return new Message(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10);
             } else {
-                var field13Backup = new ObjectForMessage();
-                field13Backup.setData(field13.getData());
-                return new Message(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13Backup);
+                return new Message(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13);
             }
         }
     }
