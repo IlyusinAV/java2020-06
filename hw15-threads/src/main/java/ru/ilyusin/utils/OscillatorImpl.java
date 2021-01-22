@@ -24,6 +24,7 @@ public class OscillatorImpl implements Oscillator {
                 .forEach(oscillation::add);
     }
 
+<<<<<<< HEAD
     public void run() {
         var forkJoinPool = new ForkJoinPool();
         for (int i = 0; i < PERIODS; i++) {
@@ -35,25 +36,62 @@ public class OscillatorImpl implements Oscillator {
             };
             forkJoinPool.submit(futureTask);
             System.out.print(futureTask.join());
+=======
+    public void run() throws ExecutionException, InterruptedException {
+        var forkJoinPool = new ForkJoinPool();
+        ForkJoinTask<String> futureTask = new RecursiveTask<String>() {
+            @Override
+            protected String compute() {
+                return outWave();
+            }
+        };
+        for (int i = 0; i < PERIODS; i++) {
+            forkJoinPool.submit(futureTask);
+            System.out.print(futureTask.get());
+>>>>>>> origin/hw15-threads
         }
         System.out.print("\n");
     }
 
+<<<<<<< HEAD
     private String makeWave() {
         StringBuilder wave = new StringBuilder();
         ExecutorService service = Executors.newSingleThreadExecutor();
         CompletableFuture[] tasks = new CompletableFuture[WAVELENGTH];
         IntStream.range(0, WAVELENGTH).forEach(i -> {
             var finalI = i;
+=======
+    private String outWave() {
+        StringBuilder wave = new StringBuilder();
+        Executor service = Executors.newSingleThreadExecutor();
+        CompletableFuture[] tasks = new CompletableFuture[WAVELENGTH];
+        IntStream.range(0, WAVELENGTH).forEach(i -> {
+            int finalI = i;
+>>>>>>> origin/hw15-threads
             Supplier<String> task = () -> getItem(finalI);
             tasks[i] = CompletableFuture.supplyAsync(task, service);
         });
 
+<<<<<<< HEAD
         CompletableFuture.allOf(tasks)
                 .thenRun(() -> Arrays.stream(tasks).forEach(result -> wave.append(result.join())));
 
         service.shutdown();
 
+=======
+        CompletableFuture<Void> allTasks = CompletableFuture.allOf(tasks);
+        allTasks.thenRun(() -> {
+            Arrays.stream(tasks).forEach(result -> {
+                try {
+                    wave.append(result.get());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            });
+        });
+>>>>>>> origin/hw15-threads
         return wave.toString();
     }
 
