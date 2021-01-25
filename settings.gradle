@@ -15,5 +15,4 @@ include 'hw05-bytecode'
 include 'hw06-bankomat'
 include 'hw07-messaging'
 include 'hw08-json'
-include 'hw15-threads'
-
+include 'hw02-map'
