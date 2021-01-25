@@ -12,25 +12,48 @@ public class CustomerService {
 
     public Map.Entry<Customer, String> getSmallest() {
         //Возможно, чтобы реализовать этот метод, потребуется посмотреть как Map.Entry сделан в jdk
-        TreeMap<Customer, String> smallest = new TreeMap<>();
-        var customer = customerService.firstEntry().getKey();
-        var newCustomer = new Customer(customer.getId(), customer.getName(), customer.getScores());
-        smallest.put(newCustomer, customerService.firstEntry().getValue());
-        return smallest.firstEntry();
+        var key = customerService.firstEntry().getKey();
+        var value = customerService.firstEntry().getValue();
+        var newCustomer = new Customer(key.getId(), key.getName(), key.getScores());
+        return new CustomerEntry(newCustomer, value);
     }
 
     public Map.Entry<Customer, String> getNext(Customer customer) {
-        TreeMap<Customer, String> nextEntry = new TreeMap<>();
         var nextItem = customerService.higherEntry(customer);
         if (nextItem == null) return null;
-        var nextKey = nextItem.getKey();
-        var nextValue = nextItem.getValue();
-        nextEntry.put(nextKey, nextValue);
-        return nextEntry.firstEntry();
+        var key = customerService.higherEntry(customer).getKey();
+        var value = customerService.higherEntry(customer).getValue();
+        var newCustomer = new Customer(key.getId(), key.getName(), key.getScores());
+        return new CustomerEntry(newCustomer, value);
     }
 
     public void add(Customer customer, String data) {
         var newCustomer = new Customer(customer.getId(), customer.getName(), customer.getScores());
         customerService.put(newCustomer, data);
+    }
+
+    private static class CustomerEntry implements Map.Entry<Customer, String> {
+        private final Customer customer;
+        private String value;
+        public CustomerEntry(Customer customer, String value) {
+            this.customer = customer;
+            this.value = value;
+        }
+
+        @Override
+        public Customer getKey() {
+            return this.customer;
+        }
+
+        @Override
+        public String getValue() {
+            return this.value;
+        }
+
+        @Override
+        public String setValue(String value) {
+            this.value = value;
+            return this.value;
+        }
     }
 }
