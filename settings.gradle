@@ -14,5 +14,6 @@ include 'hw03-testing'
 include 'hw05-bytecode'
 include 'hw06-bankomat'
 include 'hw07-messaging'
+include 'hw08-json'
 include 'hw02-map'
 
