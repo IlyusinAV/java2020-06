@@ -1,4 +1,4 @@
-package ru.ilyusin;
+package ru.ilyusin.utils;
 
 import java.util.Map;
 import java.util.Map.*;
