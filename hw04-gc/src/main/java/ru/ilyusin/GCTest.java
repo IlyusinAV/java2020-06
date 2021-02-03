@@ -1,8 +1,11 @@
 package ru.ilyusin;
 
+import ru.ilyusin.utils.MemoryUtil;
+
 public class GCTest {
     public static void main(String[] args) {
         Runtime runtime = Runtime.getRuntime();
+        MemoryUtil.startGCMonitor();
         System.out.printf("total: %11d   max: %d%n", runtime.totalMemory(), runtime.maxMemory());
         System.out.printf("used:  %11d%n", runtime.totalMemory() - runtime.freeMemory());
         System.gc();
@@ -16,5 +19,7 @@ public class GCTest {
         System.out.printf("null:  %11d%n", runtime.totalMemory() - runtime.freeMemory());
         System.gc();
         System.out.printf("gc:    %11d%n", runtime.totalMemory() - runtime.freeMemory());
+        MemoryUtil.printUsage(false);
+        MemoryUtil.stopGCMonitor();
     }
 }
