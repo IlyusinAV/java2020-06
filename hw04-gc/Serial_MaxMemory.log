@@ -1,0 +1,95 @@
+/usr/lib/jvm/java-14-oracle/bin/java -XX:+UseSerialGC -javaagent:/snap/intellij-idea-community/273/lib/idea_rt.jar=44473:/snap/intellij-idea-community/273/bin -Dfile.encoding=UTF-8 -classpath /home/andrey/IdeaProjects/java-2020-06/hw04-gc/out/production/classes ru.ilyusin.OOMTest
+total:   125698048   max: 1992818688
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=33856K; Survivor Space used=0K; Tenured Gen used=0K; ) -> (Eden Space used=0K; Survivor Space used=4224K; Tenured Gen used=26934K; ), 27 ms]
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=33834K; Survivor Space used=4224K; Tenured Gen used=26934K; ) -> (Eden Space used=0K; Survivor Space used=4199K; Tenured Gen used=60036K; ), 29 ms]
+time: 10:01:30.664063 used:     71138728
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=33844K; Survivor Space used=4199K; Tenured Gen used=60036K; ) -> (Eden Space used=0K; Survivor Space used=4224K; Tenured Gen used=92084K; ), 43 ms]
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=0K; Survivor Space used=4224K; Tenured Gen used=92084K; ) -> (Eden Space used=0K; Survivor Space used=0K; Tenured Gen used=63511K; ), 19 ms]
+time: 10:01:32.738454 used:    103472512
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=42496K; Survivor Space used=0K; Tenured Gen used=63511K; ) -> (Eden Space used=0K; Survivor Space used=5228K; Tenured Gen used=99945K; ), 28 ms]
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=42480K; Survivor Space used=5228K; Tenured Gen used=99945K; ) -> (Eden Space used=0K; Survivor Space used=5222K; Tenured Gen used=142151K; ), 32 ms]
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=0K; Survivor Space used=5222K; Tenured Gen used=142151K; ) -> (Eden Space used=0K; Survivor Space used=0K; Tenured Gen used=114585K; ), 28 ms]
+time: 10:01:34.839016 used:    138146944
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=76480K; Survivor Space used=0K; Tenured Gen used=114585K; ) -> (Eden Space used=0K; Survivor Space used=9516K; Tenured Gen used=180281K; ), 36 ms]
+time: 10:01:36.917041 used:    204674584
+time: 10:01:38.931017 used:    271169672
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=76480K; Survivor Space used=9516K; Tenured Gen used=180281K; ) -> (Eden Space used=0K; Survivor Space used=9520K; Tenured Gen used=256102K; ), 73 ms]
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=0K; Survivor Space used=9520K; Tenured Gen used=256102K; ) -> (Eden Space used=0K; Survivor Space used=0K; Tenured Gen used=167259K; ), 40 ms]
+time: 10:01:41.053921 used:    239914328
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=111610K; Survivor Space used=0K; Tenured Gen used=167259K; ) -> (Eden Space used=0K; Survivor Space used=13874K; Tenured Gen used=263882K; ), 34 ms]
+time: 10:01:43.122456 used:    305128832
+time: 10:01:45.135824 used:    373743152
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=111616K; Survivor Space used=13874K; Tenured Gen used=263882K; ) -> (Eden Space used=0K; Survivor Space used=13874K; Tenured Gen used=374220K; ), 96 ms]
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=0K; Survivor Space used=13874K; Tenured Gen used=374220K; ) -> (Eden Space used=0K; Survivor Space used=0K; Tenured Gen used=289727K; ), 65 ms]
+time: 10:01:47.310122 used:    340680976
+time: 10:01:49.324191 used:    407636360
+time: 10:01:51.367076 used:    474591744
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=193216K; Survivor Space used=0K; Tenured Gen used=289727K; ) -> (Eden Space used=0K; Survivor Space used=24100K; Tenured Gen used=457809K; ), 85 ms]
+time: 10:01:53.492246 used:    540962872
+time: 10:01:55.507347 used:    608451248
+time: 10:01:57.520396 used:    675586424
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=193216K; Survivor Space used=24100K; Tenured Gen used=457809K; ) -> (Eden Space used=0K; Survivor Space used=24100K; Tenured Gen used=649895K; ), 214 ms]
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=0K; Survivor Space used=24100K; Tenured Gen used=649895K; ) -> (Eden Space used=0K; Survivor Space used=0K; Tenured Gen used=477267K; ), 118 ms]
+time: 10:01:59.865504 used:    540777968
+time: 10:02:01.878894 used:    612213200
+time: 10:02:03.891994 used:    677154320
+time: 10:02:05.911992 used:    742095440
+time: 10:02:07.980809 used:    813502000
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=318272K; Survivor Space used=0K; Tenured Gen used=477267K; ) -> (Eden Space used=0K; Survivor Space used=39739K; Tenured Gen used=755323K; ), 152 ms]
+time: 10:02:10.151652 used:    879329792
+time: 10:02:12.164711 used:    944436432
+time: 10:02:14.177879 used:   1016053736
+time: 10:02:16.190917 used:   1081160376
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=318272K; Survivor Space used=39739K; Tenured Gen used=755323K; ) -> (Eden Space used=0K; Survivor Space used=39735K; Tenured Gen used=1072638K; ), 239 ms]
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=0K; Survivor Space used=39735K; Tenured Gen used=1072638K; ) -> (Eden Space used=0K; Survivor Space used=0K; Tenured Gen used=817281K; ), 174 ms]
+time: 10:02:18.612663 used:    848003952
+time: 10:02:20.625455 used:    913839888
+time: 10:02:22.638313 used:    979675824
+time: 10:02:24.650525 used:   1045511760
+time: 10:02:26.663404 used:   1111347696
+time: 10:02:28.676030 used:   1188156288
+time: 10:02:30.689884 used:   1253992224
+time: 10:02:32.753228 used:   1319828160
+time: 10:02:34.817917 used:   1385664096
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=536896K; Survivor Space used=0K; Tenured Gen used=817281K; ) -> (Eden Space used=0K; Survivor Space used=67045K; Tenured Gen used=1285958K; ), 247 ms]
+time: 10:02:37.082833 used:   1451445344
+time: 10:02:39.091638 used:   1517348528
+time: 10:02:41.105440 used:   1583251712
+time: 10:02:43.113998 used:   1649154896
+time: 10:02:45.127275 used:   1715058080
+time: 10:02:47.139983 used:   1791945128
+time: 10:02:49.153195 used:   1857848312
+time: 10:02:51.161571 used:   1923751496
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=536896K; Survivor Space used=67045K; Tenured Gen used=1285958K; ) -> (Eden Space used=536896K; Survivor Space used=67045K; Tenured Gen used=1285958K; ), 0 ms]
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=536896K; Survivor Space used=67045K; Tenured Gen used=1285958K; ) -> (Eden Space used=0K; Survivor Space used=0K; Tenured Gen used=1331933K; ), 318 ms]
+time: 10:02:53.490828 used:   1418975768
+time: 10:02:55.503270 used:   1484948552
+time: 10:02:57.516001 used:   1550921336
+time: 10:02:59.528552 used:   1616894120
+time: 10:03:01.541529 used:   1682866904
+time: 10:03:03.554293 used:   1748839688
+time: 10:03:05.566939 used:   1825807936
+time: 10:03:07.579878 used:   1891780720
+[end of minor GC / Allocation Failure / Copy / (Eden Space used=536896K; Survivor Space used=0K; Tenured Gen used=1331933K; ) -> (Eden Space used=536896K; Survivor Space used=0K; Tenured Gen used=1331933K; ), 0 ms]
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=536896K; Survivor Space used=0K; Tenured Gen used=1331933K; ) -> (Eden Space used=263776K; Survivor Space used=0K; Tenured Gen used=1342114K; ), 350 ms]
+time: 10:03:09.940776 used:   1688534552
+time: 10:03:11.953715 used:   1754549816
+time: 10:03:13.967328 used:   1820565080
+time: 10:03:15.980737 used:   1886580344
+time: 10:03:17.993750 used:   1949809384
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=536896K; Survivor Space used=67050K; Tenured Gen used=1342114K; ) -> (Eden Space used=439470K; Survivor Space used=0K; Tenured Gen used=1342114K; ), 331 ms]
+time: 10:03:20.338522 used:   1853198848
+time: 10:03:22.351399 used:   1920382608
+time: 10:03:24.366706 used:   1983122040
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=536896K; Survivor Space used=67050K; Tenured Gen used=1342114K; ) -> (Eden Space used=536870K; Survivor Space used=10921K; Tenured Gen used=1342122K; ), 239 ms]
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=536896K; Survivor Space used=67052K; Tenured Gen used=1342122K; ) -> (Eden Space used=536870K; Survivor Space used=67048K; Tenured Gen used=1342122K; ), 25 ms]
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=536870K; Survivor Space used=67048K; Tenured Gen used=1342122K; ) -> (Eden Space used=536874K; Survivor Space used=24427K; Tenured Gen used=1342132K; ), 399 ms]
+time: 10:03:27.040109 used:   1949209296
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=536896K; Survivor Space used=67054K; Tenured Gen used=1342132K; ) -> (Eden Space used=536875K; Survivor Space used=67016K; Tenured Gen used=1342132K; ), 42 ms]
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=536878K; Survivor Space used=67048K; Tenured Gen used=1342132K; ) -> (Eden Space used=536877K; Survivor Space used=67048K; Tenured Gen used=1342132K; ), 20 ms]
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=536877K; Survivor Space used=67048K; Tenured Gen used=1342132K; ) -> (Eden Space used=536876K; Survivor Space used=34260K; Tenured Gen used=1342132K; ), 386 ms]
+time: 10:03:29.500565 used:   1982812984
+[end of major GC / Allocation Failure / MarkSweepCompact / (Eden Space used=536896K; Survivor Space used=67050K; Tenured Gen used=1342132K; ) -> (Eden Space used=536875K; Survivor Space used=34196K; Tenured Gen used=1342132K; ), 419 ms]
+time: 10:03:31.974744 used:   1992808248
+
+Process finished with exit code 0
