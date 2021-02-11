@@ -1,0 +1,29 @@
+/usr/lib/jvm/java-14-oracle/bin/java -XX:+UseParallelGC -Xms512m -Xmx512m -javaagent:/snap/intellij-idea-community/273/lib/idea_rt.jar=39549:/snap/intellij-idea-community/273/bin -Dfile.encoding=UTF-8 -classpath /home/andrey/IdeaProjects/java-2020-06/hw04-gc/out/production/classes ru.ilyusin.OOMTest
+total:   514850816   max: 514850816
+time: 10:13:55.755812 used:     81665008
+[end of minor GC / Allocation Failure / PS Scavenge / (PS Eden Space used=131584K; PS Survivor Space used=0K; PS Old Gen used=0K; ) -> (PS Eden Space used=0K; PS Survivor Space used=21497K; PS Old Gen used=65704K; ), 27 ms]
+time: 10:13:57.856116 used:    109071152
+time: 10:13:59.872702 used:    177110864
+[end of minor GC / Allocation Failure / PS Scavenge / (PS Eden Space used=131584K; PS Survivor Space used=21497K; PS Old Gen used=65704K; ) -> (PS Eden Space used=0K; PS Survivor Space used=21497K; PS Old Gen used=179975K; ), 56 ms]
+time: 10:14:01.946236 used:    228634328
+time: 10:14:03.959149 used:    294088528
+[end of minor GC / Allocation Failure / PS Scavenge / (PS Eden Space used=131584K; PS Survivor Space used=21497K; PS Old Gen used=179975K; ) -> (PS Eden Space used=0K; PS Survivor Space used=21481K; PS Old Gen used=300942K; ), 53 ms]
+[end of major GC / Ergonomics / PS MarkSweep / (PS Eden Space used=0K; PS Survivor Space used=21481K; PS Old Gen used=300942K; ) -> (PS Eden Space used=0K; PS Survivor Space used=0K; PS Old Gen used=211243K; ), 55 ms]
+time: 10:14:06.079652 used:    239196280
+time: 10:14:08.096454 used:    307761192
+[end of minor GC / Allocation Failure / PS Scavenge / (PS Eden Space used=131584K; PS Survivor Space used=0K; PS Old Gen used=211243K; ) -> (PS Eden Space used=0K; PS Survivor Space used=21482K; PS Old Gen used=318999K; ), 30 ms]
+[end of major GC / Ergonomics / PS MarkSweep / (PS Eden Space used=0K; PS Survivor Space used=21482K; PS Old Gen used=318999K; ) -> (PS Eden Space used=0K; PS Survivor Space used=0K; PS Old Gen used=274836K; ), 59 ms]
+time: 10:14:10.196164 used:    306468232
+time: 10:14:12.212321 used:    375406920
+[end of major GC / Ergonomics / PS MarkSweep / (PS Eden Space used=131584K; PS Survivor Space used=0K; PS Old Gen used=274836K; ) -> (PS Eden Space used=0K; PS Survivor Space used=0K; PS Old Gen used=338331K; ), 88 ms]
+time: 10:14:14.312771 used:    373456288
+time: 10:14:16.326093 used:    439959888
+[end of major GC / Ergonomics / PS MarkSweep / (PS Eden Space used=131584K; PS Survivor Space used=0K; PS Old Gen used=338331K; ) -> (PS Eden Space used=54082K; PS Survivor Space used=0K; PS Old Gen used=349536K; ), 84 ms]
+time: 10:14:18.421468 used:    440736568
+[end of major GC / Ergonomics / PS MarkSweep / (PS Eden Space used=131584K; PS Survivor Space used=0K; PS Old Gen used=349536K; ) -> (PS Eden Space used=97531K; PS Survivor Space used=0K; PS Old Gen used=349536K; ), 105 ms]
+time: 10:14:20.540822 used:    474081632
+[end of major GC / Ergonomics / PS MarkSweep / (PS Eden Space used=131584K; PS Survivor Space used=0K; PS Old Gen used=349536K; ) -> (PS Eden Space used=98300K; PS Survivor Space used=0K; PS Old Gen used=349536K; ), 106 ms]
+[end of major GC / Ergonomics / PS MarkSweep / (PS Eden Space used=131584K; PS Survivor Space used=0K; PS Old Gen used=349536K; ) -> (PS Eden Space used=131312K; PS Survivor Space used=0K; PS Old Gen used=349536K; ), 12 ms]
+time: 10:14:22.976835 used:    472466568
+
+Process finished with exit code 0

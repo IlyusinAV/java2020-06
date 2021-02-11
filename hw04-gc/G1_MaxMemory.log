@@ -1,0 +1,138 @@
+/usr/lib/jvm/java-14-oracle/bin/java -javaagent:/snap/intellij-idea-community/273/lib/idea_rt.jar=42295:/snap/intellij-idea-community/273/bin -Dfile.encoding=UTF-8 -classpath /home/andrey/IdeaProjects/java-2020-06/hw04-gc/out/production/classes ru.ilyusin.OOMTest
+total:   132120576   max: 2061500416
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=836K; G1 Survivor Space used=0K; G1 Eden Space used=12288K; ) -> (G1 Old Gen used=10308K; G1 Survivor Space used=2048K; G1 Eden Space used=0K; ), 23 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=10308K; G1 Survivor Space used=2048K; G1 Eden Space used=6144K; ) -> (G1 Old Gen used=17380K; G1 Survivor Space used=2048K; G1 Eden Space used=0K; ), 9 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=17380K; G1 Survivor Space used=2048K; G1 Eden Space used=12288K; ) -> (G1 Old Gen used=30500K; G1 Survivor Space used=2048K; G1 Eden Space used=0K; ), 9 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=30500K; G1 Survivor Space used=2048K; G1 Eden Space used=19456K; ) -> (G1 Old Gen used=49956K; G1 Survivor Space used=3072K; G1 Eden Space used=0K; ), 13 ms]
+time: 13:01:54.167667 used:     72491896
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=49956K; G1 Survivor Space used=3072K; G1 Eden Space used=17408K; ) -> (G1 Old Gen used=67524K; G1 Survivor Space used=3072K; G1 Eden Space used=0K; ), 22 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=67524K; G1 Survivor Space used=3072K; G1 Eden Space used=30720K; ) -> (G1 Old Gen used=96996K; G1 Survivor Space used=5120K; G1 Eden Space used=0K; ), 11 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=96996K; G1 Survivor Space used=5120K; G1 Eden Space used=27648K; ) -> (G1 Old Gen used=125540K; G1 Survivor Space used=5120K; G1 Eden Space used=0K; ), 10 ms]
+time: 13:01:56.258909 used:    140907920
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=125540K; G1 Survivor Space used=5120K; G1 Eden Space used=18432K; ) -> (G1 Old Gen used=146884K; G1 Survivor Space used=3072K; G1 Eden Space used=0K; ), 17 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=146884K; G1 Survivor Space used=3072K; G1 Eden Space used=12288K; ) -> (G1 Old Gen used=161188K; G1 Survivor Space used=2048K; G1 Eden Space used=0K; ), 6 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=101796K; G1 Survivor Space used=2048K; G1 Eden Space used=22528K; ) -> (G1 Old Gen used=123268K; G1 Survivor Space used=4096K; G1 Eden Space used=0K; ), 7 ms]
+time: 13:01:58.322050 used:    149231072
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=123268K; G1 Survivor Space used=4096K; G1 Eden Space used=33792K; ) -> (G1 Old Gen used=157028K; G1 Survivor Space used=5120K; G1 Eden Space used=0K; ), 11 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=157028K; G1 Survivor Space used=5120K; G1 Eden Space used=23552K; ) -> (G1 Old Gen used=182596K; G1 Survivor Space used=4096K; G1 Eden Space used=0K; ), 10 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=182596K; G1 Survivor Space used=4096K; G1 Eden Space used=15360K; ) -> (G1 Old Gen used=199876K; G1 Survivor Space used=3072K; G1 Eden Space used=0K; ), 4 ms]
+time: 13:02:00.387956 used:    189142112
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=171204K; G1 Survivor Space used=3072K; G1 Eden Space used=10240K; ) -> (G1 Old Gen used=183492K; G1 Survivor Space used=2048K; G1 Eden Space used=0K; ), 4 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=183492K; G1 Survivor Space used=2048K; G1 Eden Space used=22528K; ) -> (G1 Old Gen used=204996K; G1 Survivor Space used=4096K; G1 Eden Space used=0K; ), 6 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=204996K; G1 Survivor Space used=4096K; G1 Eden Space used=15360K; ) -> (G1 Old Gen used=222372K; G1 Survivor Space used=3072K; G1 Eden Space used=0K; ), 5 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=222372K; G1 Survivor Space used=3072K; G1 Eden Space used=10240K; ) -> (G1 Old Gen used=234628K; G1 Survivor Space used=2048K; G1 Eden Space used=0K; ), 4 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=234628K; G1 Survivor Space used=2048K; G1 Eden Space used=11264K; ) -> (G1 Old Gen used=246884K; G1 Survivor Space used=2048K; G1 Eden Space used=0K; ), 4 ms]
+time: 13:02:02.443315 used:    228036952
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=217188K; G1 Survivor Space used=2048K; G1 Eden Space used=15360K; ) -> (G1 Old Gen used=232548K; G1 Survivor Space used=3072K; G1 Eden Space used=0K; ), 6 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=232548K; G1 Survivor Space used=3072K; G1 Eden Space used=29696K; ) -> (G1 Old Gen used=261124K; G1 Survivor Space used=5120K; G1 Eden Space used=0K; ), 8 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=261124K; G1 Survivor Space used=5120K; G1 Eden Space used=19456K; ) -> (G1 Old Gen used=282628K; G1 Survivor Space used=4096K; G1 Eden Space used=0K; ), 6 ms]
+time: 13:02:04.504967 used:    264803600
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=250884K; G1 Survivor Space used=4096K; G1 Eden Space used=16384K; ) -> (G1 Old Gen used=269284K; G1 Survivor Space used=3072K; G1 Eden Space used=0K; ), 5 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=269284K; G1 Survivor Space used=3072K; G1 Eden Space used=34816K; ) -> (G1 Old Gen used=303012K; G1 Survivor Space used=5120K; G1 Eden Space used=0K; ), 10 ms]
+time: 13:02:06.563078 used:    300488016
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=270244K; G1 Survivor Space used=5120K; G1 Eden Space used=21504K; ) -> (G1 Old Gen used=293796K; G1 Survivor Space used=4096K; G1 Eden Space used=0K; ), 8 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=293796K; G1 Survivor Space used=4096K; G1 Eden Space used=43008K; ) -> (G1 Old Gen used=335748K; G1 Survivor Space used=6144K; G1 Eden Space used=0K; ), 14 ms]
+time: 13:02:08.620598 used:    334140816
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=300932K; G1 Survivor Space used=6144K; G1 Eden Space used=27648K; ) -> (G1 Old Gen used=330596K; G1 Survivor Space used=5120K; G1 Eden Space used=0K; ), 12 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=330596K; G1 Survivor Space used=5120K; G1 Eden Space used=47104K; ) -> (G1 Old Gen used=376612K; G1 Survivor Space used=7168K; G1 Eden Space used=0K; ), 13 ms]
+time: 13:02:10.695370 used:    361469408
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=335652K; G1 Survivor Space used=7168K; G1 Eden Space used=30720K; ) -> (G1 Old Gen used=369380K; G1 Survivor Space used=5120K; G1 Eden Space used=0K; ), 12 ms]
+time: 13:02:12.755948 used:    430773040
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=369380K; G1 Survivor Space used=5120K; G1 Eden Space used=47104K; ) -> (G1 Old Gen used=415396K; G1 Survivor Space used=7168K; G1 Eden Space used=0K; ), 23 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=415396K; G1 Survivor Space used=7168K; G1 Eden Space used=31744K; ) -> (G1 Old Gen used=450180K; G1 Survivor Space used=5120K; G1 Eden Space used=0K; ), 12 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=450180K; G1 Survivor Space used=5120K; G1 Eden Space used=22528K; ) -> (G1 Old Gen used=474756K; G1 Survivor Space used=4096K; G1 Eden Space used=0K; ), 9 ms]
+time: 13:02:14.813913 used:    435006032
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=411268K; G1 Survivor Space used=4096K; G1 Eden Space used=29696K; ) -> (G1 Old Gen used=440932K; G1 Survivor Space used=5120K; G1 Eden Space used=0K; ), 9 ms]
+time: 13:02:16.858378 used:    504304816
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=440932K; G1 Survivor Space used=5120K; G1 Eden Space used=59392K; ) -> (G1 Old Gen used=498212K; G1 Survivor Space used=8192K; G1 Eden Space used=0K; ), 18 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=498212K; G1 Survivor Space used=8192K; G1 Eden Space used=39936K; ) -> (G1 Old Gen used=541156K; G1 Survivor Space used=6144K; G1 Eden Space used=0K; ), 13 ms]
+time: 13:02:18.917154 used:    502273296
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=471524K; G1 Survivor Space used=6144K; G1 Eden Space used=27648K; ) -> (G1 Old Gen used=501156K; G1 Survivor Space used=5120K; G1 Eden Space used=0K; ), 8 ms]
+time: 13:02:20.965494 used:    571544656
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=501156K; G1 Survivor Space used=5120K; G1 Eden Space used=70656K; ) -> (G1 Old Gen used=567652K; G1 Survivor Space used=10240K; G1 Eden Space used=0K; ), 19 ms]
+time: 13:02:23.004564 used:    571610256
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=500068K; G1 Survivor Space used=10240K; G1 Eden Space used=47104K; ) -> (G1 Old Gen used=550180K; G1 Survivor Space used=8192K; G1 Eden Space used=0K; ), 15 ms]
+time: 13:02:25.072291 used:    640849344
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=550180K; G1 Survivor Space used=8192K; G1 Eden Space used=86016K; ) -> (G1 Old Gen used=633092K; G1 Survivor Space used=12288K; G1 Eden Space used=0K; ), 27 ms]
+time: 13:02:27.132339 used:    644125456
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=568580K; G1 Survivor Space used=12288K; G1 Eden Space used=55296K; ) -> (G1 Old Gen used=627908K; G1 Survivor Space used=9216K; G1 Eden Space used=0K; ), 23 ms]
+time: 13:02:29.205644 used:    713364544
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=627908K; G1 Survivor Space used=9216K; G1 Eden Space used=95232K; ) -> (G1 Old Gen used=720036K; G1 Survivor Space used=13312K; G1 Eden Space used=0K; ), 28 ms]
+time: 13:02:31.271316 used:    719753856
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=658596K; G1 Survivor Space used=13312K; G1 Eden Space used=61440K; ) -> (G1 Old Gen used=724100K; G1 Survivor Space used=10240K; G1 Eden Space used=0K; ), 20 ms]
+time: 13:02:33.342618 used:    789025712
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=724100K; G1 Survivor Space used=10240K; G1 Eden Space used=100352K; ) -> (G1 Old Gen used=821316K; G1 Survivor Space used=14336K; G1 Eden Space used=0K; ), 27 ms]
+time: 13:02:35.413837 used:    780702088
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=745540K; G1 Survivor Space used=14336K; G1 Eden Space used=68608K; ) -> (G1 Old Gen used=818212K; G1 Survivor Space used=11264K; G1 Eden Space used=0K; ), 20 ms]
+time: 13:02:37.494760 used:    850011048
+time: 13:02:39.512808 used:    919246144
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=818212K; G1 Survivor Space used=11264K; G1 Eden Space used=98304K; ) -> (G1 Old Gen used=914404K; G1 Survivor Space used=14336K; G1 Eden Space used=0K; ), 23 ms]
+time: 13:02:41.557622 used:    895194240
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=823268K; G1 Survivor Space used=14336K; G1 Eden Space used=66560K; ) -> (G1 Old Gen used=894884K; G1 Survivor Space used=10240K; G1 Eden Space used=0K; ), 22 ms]
+time: 13:02:43.629552 used:    964498640
+time: 13:02:45.687480 used:   1033802496
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=894884K; G1 Survivor Space used=10240K; G1 Eden Space used=126976K; ) -> (G1 Old Gen used=1015556K; G1 Survivor Space used=17408K; G1 Eden Space used=0K; ), 34 ms]
+time: 13:02:47.769050 used:   1000280928
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=915204K; G1 Survivor Space used=17408K; G1 Eden Space used=81920K; ) -> (G1 Old Gen used=1002116K; G1 Survivor Space used=13312K; G1 Eden Space used=0K; ), 25 ms]
+time: 13:02:49.846948 used:   1069487264
+time: 13:02:51.891296 used:   1138758848
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1002116K; G1 Survivor Space used=13312K; G1 Eden Space used=141312K; ) -> (G1 Old Gen used=1138244K; G1 Survivor Space used=19456K; G1 Eden Space used=0K; ), 37 ms]
+time: 13:02:53.960971 used:   1102157072
+time: 13:02:56.005893 used:   1171428656
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1034820K; G1 Survivor Space used=19456K; G1 Eden Space used=96256K; ) -> (G1 Old Gen used=1136132K; G1 Survivor Space used=15360K; G1 Eden Space used=0K; ), 35 ms]
+time: 13:02:58.064079 used:   1240700272
+time: 13:03:00.116195 used:   1309971856
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1136132K; G1 Survivor Space used=15360K; G1 Eden Space used=145408K; ) -> (G1 Old Gen used=1277380K; G1 Survivor Space used=20480K; G1 Eden Space used=0K; ), 37 ms]
+time: 13:03:02.175590 used:   1251316944
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1152452K; G1 Survivor Space used=20480K; G1 Eden Space used=99328K; ) -> (G1 Old Gen used=1257860K; G1 Survivor Space used=15360K; G1 Eden Space used=0K; ), 28 ms]
+time: 13:03:04.257876 used:   1320588304
+time: 13:03:06.295119 used:   1389892416
+time: 13:03:08.365667 used:   1459196784
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1257860K; G1 Survivor Space used=15360K; G1 Eden Space used=167936K; ) -> (G1 Old Gen used=1418500K; G1 Survivor Space used=23552K; G1 Eden Space used=0K; ), 53 ms]
+time: 13:03:10.442937 used:   1373246400
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1266948K; G1 Survivor Space used=23552K; G1 Eden Space used=114688K; ) -> (G1 Old Gen used=1388740K; G1 Survivor Space used=17408K; G1 Eden Space used=0K; ), 30 ms]
+time: 13:03:12.479494 used:   1442517400
+time: 13:03:14.493171 used:   1511757072
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1388740K; G1 Survivor Space used=17408K; G1 Eden Space used=126976K; ) -> (G1 Old Gen used=1515684K; G1 Survivor Space used=18432K; G1 Eden Space used=0K; ), 37 ms]
+time: 13:03:16.543246 used:   1505563984
+time: 13:03:18.557026 used:   1574835568
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1441956K; G1 Survivor Space used=18432K; G1 Eden Space used=86016K; ) -> (G1 Old Gen used=1534052K; G1 Survivor Space used=13312K; G1 Eden Space used=0K; ), 23 ms]
+time: 13:03:20.589252 used:   1644107184
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1534052K; G1 Survivor Space used=13312K; G1 Eden Space used=86016K; ) -> (G1 Old Gen used=1621028K; G1 Survivor Space used=13312K; G1 Eden Space used=0K; ), 22 ms]
+time: 13:03:22.619966 used:   1611698944
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1521700K; G1 Survivor Space used=13312K; G1 Eden Space used=86016K; ) -> (G1 Old Gen used=1608644K; G1 Survivor Space used=13312K; G1 Eden Space used=0K; ), 22 ms]
+time: 13:03:24.651401 used:   1680938048
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1608644K; G1 Survivor Space used=13312K; G1 Eden Space used=86016K; ) -> (G1 Old Gen used=1695620K; G1 Survivor Space used=13312K; G1 Eden Space used=0K; ), 21 ms]
+time: 13:03:26.684701 used:   1680286616
+time: 13:03:28.692612 used:   1749259440
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1627012K; G1 Survivor Space used=13312K; G1 Eden Space used=86016K; ) -> (G1 Old Gen used=1713956K; G1 Survivor Space used=13312K; G1 Eden Space used=0K; ), 22 ms]
+time: 13:03:30.723940 used:   1818498032
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1713956K; G1 Survivor Space used=13312K; G1 Eden Space used=86016K; ) -> (G1 Old Gen used=1800932K; G1 Survivor Space used=13312K; G1 Eden Space used=0K; ), 22 ms]
+time: 13:03:32.754580 used:   1777636640
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1693412K; G1 Survivor Space used=13312K; G1 Eden Space used=86016K; ) -> (G1 Old Gen used=1780420K; G1 Survivor Space used=13312K; G1 Eden Space used=0K; ), 25 ms]
+time: 13:03:34.794466 used:   1846913560
+time: 13:03:36.803737 used:   1916179824
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1780420K; G1 Survivor Space used=13312K; G1 Eden Space used=86016K; ) -> (G1 Old Gen used=1867428K; G1 Survivor Space used=13312K; G1 Eden Space used=0K; ), 28 ms]
+time: 13:03:38.848127 used:   1905759648
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1789604K; G1 Survivor Space used=13312K; G1 Eden Space used=86016K; ) -> (G1 Old Gen used=1876612K; G1 Survivor Space used=13312K; G1 Eden Space used=0K; ), 22 ms]
+time: 13:03:40.880045 used:   1975063776
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1876612K; G1 Survivor Space used=13312K; G1 Eden Space used=86016K; ) -> (G1 Old Gen used=1969988K; G1 Survivor Space used=13312K; G1 Eden Space used=0K; ), 10 ms]
+time: 13:03:42.899413 used:   1940820528
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1862468K; G1 Survivor Space used=13312K; G1 Eden Space used=86016K; ) -> (G1 Old Gen used=1954596K; G1 Survivor Space used=13312K; G1 Eden Space used=0K; ), 13 ms]
+time: 13:03:44.924251 used:   2015732360
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1954596K; G1 Survivor Space used=13312K; G1 Eden Space used=43008K; ) -> (G1 Old Gen used=2011908K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ), 3 ms]
+[end of major GC / G1 Evacuation Pause / G1 Old Generation / (G1 Old Gen used=2011908K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ) -> (G1 Old Gen used=1847900K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ), 594 ms]
+time: 13:03:47.533486 used:   1916739568
+time: 13:03:49.543885 used:   1986032792
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1847900K; G1 Survivor Space used=0K; G1 Eden Space used=99328K; ) -> (G1 Old Gen used=1948220K; G1 Survivor Space used=4096K; G1 Eden Space used=0K; ), 3 ms]
+[end of major GC / G1 Evacuation Pause / G1 Old Generation / (G1 Old Gen used=1948220K; G1 Survivor Space used=4096K; G1 Eden Space used=0K; ) -> (G1 Old Gen used=1879507K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ), 378 ms]
+time: 13:03:51.934979 used:   1984974656
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1879507K; G1 Survivor Space used=0K; G1 Eden Space used=70656K; ) -> (G1 Old Gen used=1951155K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ), 2 ms]
+[end of major GC / G1 Evacuation Pause / G1 Old Generation / (G1 Old Gen used=1951155K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ) -> (G1 Old Gen used=1916168K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ), 269 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1916168K; G1 Survivor Space used=0K; G1 Eden Space used=32768K; ) -> (G1 Old Gen used=1949929K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ), 1 ms]
+[end of major GC / G1 Evacuation Pause / G1 Old Generation / (G1 Old Gen used=1949929K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ) -> (G1 Old Gen used=1948892K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ), 31 ms]
+[end of minor GC / G1 Evacuation Pause / G1 Young Generation / (G1 Old Gen used=1948892K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ) -> (G1 Old Gen used=1949891K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ), 1 ms]
+[end of major GC / G1 Evacuation Pause / G1 Old Generation / (G1 Old Gen used=1949891K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ) -> (G1 Old Gen used=1949789K; G1 Survivor Space used=0K; G1 Eden Space used=0K; ), 133 ms]
+time: 13:03:54.551078 used:   1983769496
+
+Process finished with exit code 0
