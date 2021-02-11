@@ -1,6 +1,7 @@
+package ru.ilyusin;
 
-import annotations.Log;
-import interfaces.MyClassInterface;
+import ru.ilyusin.annotations.Log;
+import ru.ilyusin.interfaces.MyClassInterface;
 
 public class MyClassImpl implements MyClassInterface {
 

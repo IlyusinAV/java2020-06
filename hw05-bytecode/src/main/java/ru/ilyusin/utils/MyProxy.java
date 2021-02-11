@@ -1,7 +1,7 @@
 package ru.ilyusin.utils;
 
-import annotations.Log;
-import interfaces.MyClassInterface;
+import ru.ilyusin.annotations.Log;
+import ru.ilyusin.interfaces.MyClassInterface;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -11,16 +11,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MyProxy {
-    static Class clazz = null;
-    static List<Method> annotatedMethods = new ArrayList<>();
-    static InvocationHandler handler = null;
+    private final static List<Method> annotatedMethods = new ArrayList<>();
+    private static InvocationHandler handler = null;
 
     private MyProxy() {
     }
 
     public static MyClassInterface createMyClass(String myClassImpl) {
         try {
-            clazz = Class.forName(myClassImpl);
+            var clazz = Class.forName(myClassImpl);
             Method[] methods = clazz.getDeclaredMethods();
             for (Method method : methods) {
                 if (method.isAnnotationPresent(Log.class)) annotatedMethods.add(method);

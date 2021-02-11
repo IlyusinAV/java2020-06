@@ -1,4 +1,4 @@
-package annotations;
+package ru.ilyusin.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
