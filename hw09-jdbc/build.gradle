@@ -2,7 +2,8 @@ plugins {
     id 'java'
 }
 
-version 'unspecified'
+sourceCompatibility = JavaVersion.VERSION_14
+targetCompatibility = JavaVersion.VERSION_14
 
 repositories {
     mavenCentral()
@@ -10,7 +11,9 @@ repositories {
 
 dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.30'
+    implementation 'org.slf4j:slf4j-simple:1.7.30'
     implementation 'org.flywaydb:flyway-core:7.5.3'
+    implementation 'org.postgresql:postgresql:42.2.18'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }

@@ -7,7 +7,6 @@ import ru.otus.core.dao.UserDao;
 import ru.otus.core.model.User;
 import ru.otus.core.service.DbServiceUserImpl;
 import ru.otus.jdbc.DbExecutorImpl;
-import ru.otus.jdbc.dao.UserDaoJdbc;
 import ru.otus.jdbc.mapper.JdbcMapper;
 import ru.otus.jdbc.sessionmanager.SessionManagerJdbc;
 

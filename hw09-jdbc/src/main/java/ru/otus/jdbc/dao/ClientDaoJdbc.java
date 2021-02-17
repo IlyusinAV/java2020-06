@@ -10,25 +10,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.otus.core.dao.UserDao;
 import ru.otus.core.dao.UserDaoException;
+import ru.otus.entities.Client;
 import ru.otus.jdbc.DbExecutorImpl;
 import ru.otus.core.model.User;
 import ru.otus.core.sessionmanager.SessionManager;
 import ru.otus.jdbc.sessionmanager.SessionManagerJdbc;
 
-// этот класс не должен быть в домашней работе
-public class UserDaoJdbc implements UserDao {
-    private static final Logger logger = LoggerFactory.getLogger(UserDaoJdbc.class);
+public class ClientDaoJdbc implements UserDao {
+    private static final Logger logger = LoggerFactory.getLogger(ClientDaoJdbc.class);
 
     private final SessionManagerJdbc sessionManager;
     private final DbExecutorImpl<User> dbExecutor;
 
-    public UserDaoJdbc(SessionManagerJdbc sessionManager, DbExecutorImpl<User> dbExecutor) {
+    public ClientDaoJdbc(SessionManagerJdbc sessionManager, DbExecutorImpl<User> dbExecutor) {
         this.sessionManager = sessionManager;
         this.dbExecutor = dbExecutor;
     }
 
     @Override
-    public Optional<User> findById(long id) {
+    public Optional<Client> findById(long id) {
         try {
             return dbExecutor.executeSelect(getConnection(), "select id, name from user where id  = ?",
                     id, rs -> {
