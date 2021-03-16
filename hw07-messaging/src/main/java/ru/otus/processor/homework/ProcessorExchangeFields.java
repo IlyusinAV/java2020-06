@@ -1,6 +1,6 @@
 package ru.otus.processor.homework;
 
-import ru.otus.Message;
+import ru.otus.model.Message;
 import ru.otus.processor.Processor;
 
 public class ProcessorExchangeFields implements Processor {

@@ -2,7 +2,7 @@ package ru.otus.handler;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.otus.Message;
+import ru.otus.model.Message;
 import ru.otus.listener.Listener;
 import ru.otus.processor.Processor;
 
@@ -24,7 +24,7 @@ class ComplexProcessorTest {
     @DisplayName("Тестируем вызовы процессоров")
     void handleProcessorsTest() {
         //given
-        var message = new Message.Builder().field7("field7").build();
+        var message = new Message.Builder(1L).field7("field7").build();
 
         var processor1 = mock(Processor.class);
         when(processor1.process(eq(message))).thenReturn(message);
@@ -50,7 +50,7 @@ class ComplexProcessorTest {
     @DisplayName("Тестируем обработку исключения")
     void handleExceptionTest() {
         //given
-        var message = new Message.Builder().field8("field8").build();
+        var message = new Message.Builder(1L).field8("field8").build();
 
         var processor1 = mock(Processor.class);
         when(processor1.process(eq(message))).thenThrow(new RuntimeException("Test Exception"));
@@ -76,7 +76,7 @@ class ComplexProcessorTest {
     @DisplayName("Тестируем уведомления")
     void notifyTest() {
         //given
-        var message = new Message.Builder().field9("field9").build();
+        var message = new Message.Builder(1L).field9("field9").build();
 
         var listener = mock(Listener.class);
 

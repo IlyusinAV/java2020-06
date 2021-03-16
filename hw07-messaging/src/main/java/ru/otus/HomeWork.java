@@ -3,11 +3,12 @@ package ru.otus;
 import ru.otus.handler.ComplexProcessor;
 import ru.otus.listener.homework.HistoryStorage;
 import ru.otus.listener.homework.ListenerHistory;
+import ru.otus.model.Message;
+import ru.otus.model.ObjectForMessage;
 import ru.otus.processor.homework.CurrentSecondProvider;
 import ru.otus.processor.homework.ProcessorExchangeFields;
 import ru.otus.processor.homework.ProcessorThrowException;
 
-import java.io.*;
 import java.util.List;
 
 public class HomeWork {
@@ -35,7 +36,7 @@ public class HomeWork {
         complexProcessor.addListener(listenerHistory);
         var objectForMessage = new ObjectForMessage();
         objectForMessage.setData(List.of("a", "b", "c"));
-        var message = new Message.Builder()
+        var message = new Message.Builder(1L)
                 .field1("field1")
                 .field2("field2")
                 .field3("field3")

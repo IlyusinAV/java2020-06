@@ -2,6 +2,7 @@ package ru.otus;
 
 import ru.otus.handler.ComplexProcessor;
 import ru.otus.listener.ListenerPrinter;
+import ru.otus.model.Message;
 import ru.otus.processor.LoggerProcessor;
 import ru.otus.processor.ProcessorConcatFields;
 import ru.otus.processor.ProcessorUpperField10;
@@ -17,7 +18,7 @@ public class Demo {
         var listenerPrinter = new ListenerPrinter();
         complexProcessor.addListener(listenerPrinter);
 
-        var message = new Message.Builder()
+        var message = new Message.Builder(1L)
                 .field1("field1")
                 .field2("field2")
                 .field3("field3")

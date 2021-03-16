@@ -1,11 +1,7 @@
-package ru.otus;
-
-import java.io.Serializable;
-import java.util.Objects;
-
-import com.google.common.base.Optional;
+package ru.otus.model;
 
 public class Message {
+    private final long id;
     private final String field1;
     private final String field2;
     private final String field3;
@@ -23,7 +19,8 @@ public class Message {
     private ObjectForMessage field13;
 
 
-    private Message(String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10) {
+    private Message(long id, String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10) {
+        this.id = id;
         this.field1 = field1;
         this.field2 = field2;
         this.field3 = field3;
@@ -40,7 +37,8 @@ public class Message {
         this.field13 = null;
     }
 
-    private Message(String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10, String field11, String field12, ObjectForMessage field13) {
+    private Message(long id, String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10, String field11, String field12, ObjectForMessage field13) {
+        this.id = id;
         this.field1 = field1;
         this.field2 = field2;
         this.field3 = field3;
@@ -54,6 +52,10 @@ public class Message {
         this.field11 = field11;
         this.field12 = field12;
         this.field13 = field13;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getField1() {
@@ -116,52 +118,20 @@ public class Message {
 
         Message message = (Message) o;
 
-        Optional<String> f11 = Optional.fromNullable(message.field11);
-        Optional<String> f12 = Optional.fromNullable(message.field12);
-        Optional<ObjectForMessage> f13 = Optional.fromNullable(message.field13);
-
-        if (!Objects.equals(field1, message.field1)) return false;
-        if (!Objects.equals(field2, message.field2)) return false;
-        if (!Objects.equals(field3, message.field3)) return false;
-        if (!Objects.equals(field4, message.field4)) return false;
-        if (!Objects.equals(field5, message.field5)) return false;
-        if (!Objects.equals(field6, message.field6)) return false;
-        if (!Objects.equals(field7, message.field7)) return false;
-        if (!Objects.equals(field8, message.field8)) return false;
-        if (!Objects.equals(field9, message.field9)) return false;
-        if (!Objects.equals(field10, message.field10)) return false;
-
-        // С учетом новой структуры message
-        if (!Objects.equals(field11, f11.or((String) null))) return false;
-        if (!Objects.equals(field12, f12.or((String) null))) return false;
-        return (!Objects.equals(field13, f13.or((ObjectForMessage) null)));
+        return id == message.id;
     }
 
     @Override
     public int hashCode() {
-        int result = field1 != null ? field1.hashCode() : 0;
-        result = 31 * result + (field2 != null ? field2.hashCode() : 0);
-        result = 31 * result + (field3 != null ? field3.hashCode() : 0);
-        result = 31 * result + (field4 != null ? field4.hashCode() : 0);
-        result = 31 * result + (field5 != null ? field5.hashCode() : 0);
-        result = 31 * result + (field6 != null ? field6.hashCode() : 0);
-        result = 31 * result + (field7 != null ? field7.hashCode() : 0);
-        result = 31 * result + (field8 != null ? field8.hashCode() : 0);
-        result = 31 * result + (field9 != null ? field9.hashCode() : 0);
-        result = 31 * result + (field10 != null ? field10.hashCode() : 0);
-
-        // С учетом новых полей
-        result = 31 * result + (field11 != null ? field11.hashCode() : 0);
-        result = 31 * result + (field13 != null ? field13.hashCode() : 0);
-        result = 31 * result + (field13 != null ? field13.hashCode() : 0);
-        return result;
+        return (int) (id ^ (id >>> 32));
     }
 
     @Override
     public String toString() {
         if (field11 == null && field12 == null && field13 == null) {
             return "Message{" +
-                    "field1='" + field1 + '\'' +
+                    "id=" + id +
+                    ", field1='" + field1 + '\'' +
                     ", field2='" + field2 + '\'' +
                     ", field3='" + field3 + '\'' +
                     ", field4='" + field4 + '\'' +
@@ -174,7 +144,8 @@ public class Message {
                     '}';
         } else {
             return "Message{" +
-                    "field1='" + field1 + '\'' +
+                    "id=" + id +
+                    ", field1='" + field1 + '\'' +
                     ", field2='" + field2 + '\'' +
                     ", field3='" + field3 + '\'' +
                     ", field4='" + field4 + '\'' +
@@ -193,13 +164,14 @@ public class Message {
 
     public Builder toBuilder() {
         if (field11 == null && field12 == null && field13 == null) {
-            return new Builder(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10);
+            return new Builder(id, field1, field2, field3, field4, field5, field6, field7, field8, field9, field10);
         } else {
-            return new Builder(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13);
+            return new Builder(id, field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13);
         }
     }
 
     public static class Builder {
+        private final long id;
         private String field1;
         private String field2;
         private String field3;
@@ -216,11 +188,12 @@ public class Message {
         private String field12;
         private ObjectForMessage field13;
 
-
-        public Builder() {
+        public Builder(long id) {
+            this.id = id;
         }
 
-        private Builder(String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10) {
+        private Builder(long id, String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10) {
+            this.id = id;
             this.field1 = field1;
             this.field2 = field2;
             this.field3 = field3;
@@ -233,7 +206,8 @@ public class Message {
             this.field10 = field10;
         }
 
-        private Builder(String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10, String field11, String field12, ObjectForMessage field13) {
+        private Builder(long id, String field1, String field2, String field3, String field4, String field5, String field6, String field7, String field8, String field9, String field10, String field11, String field12, ObjectForMessage field13) {
+            this.id = id;
             this.field1 = field1;
             this.field2 = field2;
             this.field3 = field3;
@@ -317,9 +291,9 @@ public class Message {
 
         public Message build() {
             if (field11 == null && field12 == null && field13 == null) {
-                return new Message(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10);
+                return new Message(id, field1, field2, field3, field4, field5, field6, field7, field8, field9, field10);
             } else {
-                return new Message(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13);
+                return new Message(id, field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13);
             }
         }
     }

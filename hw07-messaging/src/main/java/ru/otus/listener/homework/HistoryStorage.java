@@ -1,6 +1,6 @@
 package ru.otus.listener.homework;
 
-import ru.otus.Message;
+import ru.otus.model.Message;
 
 import java.util.LinkedList;
 import java.util.List;
