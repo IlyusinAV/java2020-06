@@ -8,16 +8,14 @@ import ru.otus.core.sessionmanager.TransactionManagerJdbc;
 import ru.otus.crm.datasource.DriverManagerDataSource;
 import ru.otus.crm.model.Client;
 import ru.otus.crm.service.DbServiceClientImpl;
-import ru.otus.jdbc.mapper.EntityClassMetaData;
-import ru.otus.jdbc.mapper.EntitySQLMetaData;
-import ru.otus.jdbc.mapper.DataTemplateJdbc;
+import ru.otus.jdbc.mapper.*;
 
 import javax.sql.DataSource;
 
 public class HomeWork {
-    private static final String URL = "jdbc:postgresql://localhost:5430/demoDB";
-    private static final String USER = "usr";
-    private static final String PASSWORD = "pwd";
+    private static final String URL = "jdbc:postgresql://localhost:5432/demoDB";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "docker";
 
     private static final Logger log = LoggerFactory.getLogger(HomeWork.class);
 
@@ -29,8 +27,8 @@ public class HomeWork {
         var dbExecutor = new DbExecutorImpl();
 
 // Работа с клиентом
-        EntityClassMetaData entityClassMetaDataClient; // = new EntityClassMetaDataImpl();
-        EntitySQLMetaData entitySQLMetaDataClient = null; //= new EntitySQLMetaDataImpl();
+        EntityClassMetaData entityClassMetaDataClient = new EntityClassMetaDataImpl(Client.class);
+        EntitySQLMetaData entitySQLMetaDataClient = new EntitySQLMetaDataImpl(entityClassMetaDataClient);
         var dataTemplate = new DataTemplateJdbc<Client>(dbExecutor, entitySQLMetaDataClient, Client.class);
 
 // Код дальше должен остаться, т.е. clientDao должен использоваться
