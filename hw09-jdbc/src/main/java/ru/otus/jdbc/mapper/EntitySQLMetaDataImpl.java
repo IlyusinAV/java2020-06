@@ -17,7 +17,7 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
     private List<Field> fieldsWithoutId = new LinkedList<>();
 
     public EntitySQLMetaDataImpl(EntityClassMetaData entityClassMetaData) {
-        name.append(entityClassMetaData.getClass().getName());
+        name.append(entityClassMetaData.getName());
         id.append(entityClassMetaData.getIdField().getName());
         fields = entityClassMetaData.getAllFields();
         fieldsWithoutId = entityClassMetaData.getFieldsWithoutId();
@@ -46,7 +46,7 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
         clearSqlString();
         sqlString.append("insert into ");
         sqlString.append(name);
-        sqlString.append("(");
+        sqlString.append(" (");
         for (Field field : fieldsWithoutId) {
             sqlString.append(field.getName());
             sqlString.append(", ");

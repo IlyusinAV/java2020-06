@@ -1,9 +1,9 @@
 package ru.otus.jdbc.mapper;
 
-import ru.otus.annotations.Id;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,12 +18,7 @@ public class EntityClassMetaDataImpl implements EntityClassMetaData {
 
     public EntityClassMetaDataImpl(Class clazz) {
         this.clazz = clazz;
-        name.append(clazz.getName());
-        try {
-            constructor = clazz.getConstructor();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
+        name.append(clazz.getSimpleName());
         fields = Arrays.asList(clazz.getDeclaredFields());
         for (Field field : fields) {
             if (field.getName().equals("id")) {
@@ -37,8 +32,6 @@ public class EntityClassMetaDataImpl implements EntityClassMetaData {
         }
     }
 
-    private EntityClassMetaDataImpl() {}
-
     @Override
     public String getName() {
         return name.toString();
@@ -46,7 +39,7 @@ public class EntityClassMetaDataImpl implements EntityClassMetaData {
 
     @Override
     public Constructor getConstructor() {
-        return constructor;
+        throw new UnsupportedOperationException();
     }
 
     @Override
