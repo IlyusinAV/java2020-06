@@ -1,6 +1,9 @@
 package ru.otus.crm.model;
 
+import ru.otus.annotations.Id;
+
 public class Client {
+    @Id
     private final Long id;
     private final String name;
 

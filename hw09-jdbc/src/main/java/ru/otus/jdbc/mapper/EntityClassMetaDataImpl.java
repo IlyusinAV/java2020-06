@@ -1,45 +1,46 @@
 package ru.otus.jdbc.mapper;
 
 
+import ru.otus.annotations.Id;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 public class EntityClassMetaDataImpl implements EntityClassMetaData {
-    private final Class clazz;
-    private final StringBuilder name = new StringBuilder("");
-    private Constructor constructor;
+    private final Class<?> clazz;
+    private Constructor<?> constructor = null;
     private List<Field> fields = new LinkedList<>();
-    private List<Field> fieldsWithoutId = new LinkedList<>();
+    private final List<Field> fieldsWithoutId = new LinkedList<>();
     private Field idField = null;
 
     public EntityClassMetaDataImpl(Class clazz) {
         this.clazz = clazz;
-        name.append(clazz.getSimpleName());
         fields = Arrays.asList(clazz.getDeclaredFields());
         for (Field field : fields) {
-            if (field.getName().equals("id")) {
+            if (field.isAnnotationPresent(Id.class)) {
                 idField = field;
             } else {
                 fieldsWithoutId.add(field);
             }
         }
-        if (fieldsWithoutId.equals(fields)) {
-            throw new RuntimeException("Object has no Id field");
-        }
     }
 
     @Override
     public String getName() {
-        return name.toString();
+        return clazz.getSimpleName();
     }
 
     @Override
-    public Constructor getConstructor() {
-        throw new UnsupportedOperationException();
+    public Constructor<?> getConstructor() {
+        try {
+            constructor = clazz.getConstructor();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return constructor;
     }
 
     @Override

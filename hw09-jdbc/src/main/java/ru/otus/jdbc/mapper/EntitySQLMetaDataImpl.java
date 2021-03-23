@@ -10,7 +10,6 @@ import java.util.List;
 public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
     private static final Logger log = LoggerFactory.getLogger(EntitySQLMetaDataImpl.class);
 
-    private final StringBuilder sqlString = new StringBuilder(" ");
     private final StringBuilder name = new StringBuilder();
     private final StringBuffer id = new StringBuffer();
     private List<Field> fields = new LinkedList<>();
@@ -25,7 +24,7 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
 
     @Override
     public String getSelectAllSql() {
-        addSelectWithFieldsAndTable();
+        StringBuilder sqlString = addSelectWithFieldsAndTable();
         sqlString.append(";");
         log.info(sqlString.toString());
         return sqlString.toString();
@@ -33,7 +32,7 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
 
     @Override
     public String getSelectByIdSql() {
-        addSelectWithFieldsAndTable();
+        StringBuilder sqlString = addSelectWithFieldsAndTable();
         sqlString.append(" where ");
         sqlString.append(id.toString());
         sqlString.append(" = ?;");
@@ -43,7 +42,7 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
 
     @Override
     public String getInsertSql() {
-        clearSqlString();
+        StringBuilder sqlString = new StringBuilder();
         sqlString.append("insert into ");
         sqlString.append(name);
         sqlString.append(" (");
@@ -63,7 +62,7 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
 
     @Override
     public String getUpdateSql() {
-        clearSqlString();
+        StringBuilder sqlString = new StringBuilder();
         sqlString.append("update ");
         sqlString.append(name);
         sqlString.append(" set ");
@@ -77,12 +76,9 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
         return sqlString.toString();
     }
 
-    private void clearSqlString() {
-        sqlString.delete(0, sqlString.length());
-    }
 
-    private void addSelectWithFieldsAndTable() {
-        clearSqlString();
+    private StringBuilder addSelectWithFieldsAndTable() {
+        StringBuilder sqlString = new StringBuilder();
         sqlString.append("select ");
         for (Field field : fields) {
             sqlString.append(field.getName());
@@ -91,5 +87,6 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
         sqlString.delete(sqlString.length() - 2, sqlString.length());
         sqlString.append(" from ");
         sqlString.append(name);
+        return sqlString;
     }
 }

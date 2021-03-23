@@ -1,12 +1,12 @@
 package ru.otus.jdbc.mapper;
 
+import ru.otus.annotations.Id;
 import ru.otus.core.repository.DataTemplate;
 import ru.otus.core.repository.DataTemplateException;
 import ru.otus.core.repository.executor.DbExecutor;
 import ru.otus.crm.model.Client;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.*;
@@ -78,7 +78,7 @@ public class DataTemplateJdbc<T> implements DataTemplate<T> {
     private List<Object> getValueList (T object) {
         List<Object> values = new LinkedList<>();
         for (Field field : object.getClass().getDeclaredFields()) {
-            if (!field.getName().equals("id")) {
+            if (!field.isAnnotationPresent(Id.class)) {
                 field.setAccessible(true);
                 try {
                     values.add(field.get(object));
