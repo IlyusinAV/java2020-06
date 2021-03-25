@@ -26,6 +26,7 @@ public class EntityClassMetaDataImpl implements EntityClassMetaData {
                 fieldsWithoutId.add(field);
             }
         }
+        if (fieldsWithoutId.equals(fields)) throw new RuntimeException("Class doesn't contain id field");
     }
 
     @Override
