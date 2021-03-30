@@ -10,14 +10,14 @@ import java.util.List;
 public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
     private static final Logger log = LoggerFactory.getLogger(EntitySQLMetaDataImpl.class);
 
-    private final StringBuilder name = new StringBuilder();
-    private final StringBuffer id = new StringBuffer();
+    private final String name;
+    private final String id;
     private List<Field> fields = new LinkedList<>();
     private List<Field> fieldsWithoutId = new LinkedList<>();
 
     public EntitySQLMetaDataImpl(EntityClassMetaData entityClassMetaData) {
-        name.append(entityClassMetaData.getName());
-        id.append(entityClassMetaData.getIdField().getName());
+        name = entityClassMetaData.getName();
+        id = entityClassMetaData.getIdField().getName();
         fields = entityClassMetaData.getAllFields();
         fieldsWithoutId = entityClassMetaData.getFieldsWithoutId();
     }
@@ -52,9 +52,7 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
         }
         sqlString.delete(sqlString.length() - 2, sqlString.length());
         sqlString.append(") values (");
-        for (Field field : fieldsWithoutId) {
-            sqlString.append("? ");
-        }
+        sqlString.append("? ".repeat(fieldsWithoutId.size()));
         sqlString.append(");");
         log.info(sqlString.toString());
         return sqlString.toString();

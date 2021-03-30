@@ -11,12 +11,12 @@ import java.util.List;
 
 public class EntityClassMetaDataImpl implements EntityClassMetaData {
     private final Class<?> clazz;
-    private Constructor<?> constructor = null;
+    private final Constructor<?> constructor = null;
     private List<Field> fields = new LinkedList<>();
     private final List<Field> fieldsWithoutId = new LinkedList<>();
     private Field idField = null;
 
-    public EntityClassMetaDataImpl(Class clazz) {
+    public EntityClassMetaDataImpl(Class<?> clazz) {
         this.clazz = clazz;
         fields = Arrays.asList(clazz.getDeclaredFields());
         for (Field field : fields) {
@@ -37,11 +37,10 @@ public class EntityClassMetaDataImpl implements EntityClassMetaData {
     @Override
     public Constructor<?> getConstructor() {
         try {
-            constructor = clazz.getConstructor();
+            return clazz.getConstructor();
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Class doesn't contain default constructor");
         }
-        return constructor;
     }
 
     @Override
