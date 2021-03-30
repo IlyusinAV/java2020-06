@@ -27,18 +27,22 @@ public class HomeWork {
         var dbExecutor = new DbExecutorImpl();
 
 // Работа с клиентом
-        EntityClassMetaData entityClassMetaDataClient = new EntityClassMetaDataImpl(Client.class);
-        EntitySQLMetaData entitySQLMetaDataClient = new EntitySQLMetaDataImpl(entityClassMetaDataClient);
-        var dataTemplate = new DataTemplateJdbc<Client>(dbExecutor, entitySQLMetaDataClient, Client.class);
+        try {
+            EntityClassMetaData entityClassMetaDataClient = new EntityClassMetaDataImpl(Client.class);
+            EntitySQLMetaData entitySQLMetaDataClient = new EntitySQLMetaDataImpl(entityClassMetaDataClient);
+            var dataTemplate = new DataTemplateJdbc<Client>(dbExecutor, entitySQLMetaDataClient, Client.class);
 
 // Код дальше должен остаться, т.е. clientDao должен использоваться
-        var dbServiceClient = new DbServiceClientImpl(transactionManager, dataTemplate);
-        dbServiceClient.saveClient(new Client("dbServiceFirst"));
+            var dbServiceClient = new DbServiceClientImpl(transactionManager, dataTemplate);
+            dbServiceClient.saveClient(new Client("dbServiceFirst"));
 
-        var clientSecond = dbServiceClient.saveClient(new Client("dbServiceSecond"));
-        var clientSecondSelected = dbServiceClient.getClient(clientSecond.getId())
-                .orElseThrow(() -> new RuntimeException("Client not found, id:" + clientSecond.getId()));
-        log.info("clientSecondSelected:{}", clientSecondSelected);
+            var clientSecond = dbServiceClient.saveClient(new Client("dbServiceSecond"));
+            var clientSecondSelected = dbServiceClient.getClient(clientSecond.getId())
+                    .orElseThrow(() -> new RuntimeException("Client not found, id:" + clientSecond.getId()));
+            log.info("clientSecondSelected:{}", clientSecondSelected);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
     }
 
     private static void flywayMigrations(DataSource dataSource) {
