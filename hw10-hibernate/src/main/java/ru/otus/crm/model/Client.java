@@ -1,12 +1,8 @@
 package ru.otus.crm.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "client")
@@ -19,6 +15,13 @@ public class Client implements Cloneable {
 
     @Column(name = "name")
     private String name;
+
+    @OneToOne(targetEntity = AddressDataSet.class, cascade = CascadeType.ALL)
+    private AddressDataSet address;
+
+    @OneToMany(targetEntity = PhoneDataSet.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id")
+    private List<PhoneDataSet> phones;
 
     public Client() {
     }
