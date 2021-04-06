@@ -22,6 +22,11 @@ public class AddressDataSet {
         this.street = street;
     }
 
+    public AddressDataSet(String street) {
+        this.id = null;
+        this.street = street;
+    }
+
     public Long getId() {
         return id;
     }
