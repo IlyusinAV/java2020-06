@@ -19,10 +19,6 @@ public class Client implements Cloneable {
     @OneToOne(targetEntity = AddressDataSet.class, cascade = CascadeType.ALL)
     private AddressDataSet address;
 
-    @OneToMany(targetEntity = PhoneDataSet.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id")
-    private List<PhoneDataSet> phones;
-
     public Client() {
     }
 
@@ -36,23 +32,21 @@ public class Client implements Cloneable {
         this.name = name;
     }
 
-    public Client(String name, AddressDataSet address, List<PhoneDataSet> phones) {
+    public Client(String name, AddressDataSet address) {
         this.id = null;
         this.name = name;
         this.address = address;
-        this.phones = phones;
     }
 
-    public Client(Long id, String name, AddressDataSet address, List<PhoneDataSet> phones) {
+    public Client(Long id, String name, AddressDataSet address) {
         this.id = id;
         this.name = name;
         this.address = address;
-        this.phones = phones;
     }
 
     @Override
     public Client clone() {
-        return new Client(this.id, this.name, this.address, this.phones);
+        return new Client(this.id, this.name, this.address);
     }
 
     public Long getId() {
@@ -79,25 +73,12 @@ public class Client implements Cloneable {
         this.address = address;
     }
 
-    public List<PhoneDataSet> getPhones() {
-        return phones;
-    }
-
-    public void setPhones(List<PhoneDataSet> phones) {
-        this.phones = phones;
-    }
-
-    public void addPhone(PhoneDataSet phone) {
-        this.phones.add(phone);
-    }
-
     @Override
     public String toString() {
         return "Client{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address=" + address +
-                ", phones=" + phones +
                 '}';
     }
 }

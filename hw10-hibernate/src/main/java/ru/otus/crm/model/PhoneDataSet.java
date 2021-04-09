@@ -14,20 +14,27 @@ public class PhoneDataSet {
     @Column(name = "number")
     private String number;
 
-    @ManyToOne(targetEntity = Client.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Client.class, cascade = CascadeType.REFRESH)
     private Client client;
 
     public PhoneDataSet() {
     }
 
-    public PhoneDataSet(Long id, String number) {
+    public PhoneDataSet(Long id, String number, Client client) {
         this.id = id;
         this.number = number;
+        this.client = client;
     }
 
-    public PhoneDataSet(String number) {
+    public PhoneDataSet(String number, Client client) {
         this.id = null;
         this.number = number;
+        this.client = client;
+    }
+
+    @Override
+    public PhoneDataSet clone() {
+        return new PhoneDataSet(this.id, this.number, this.client);
     }
 
     public Long getId() {
@@ -38,12 +45,20 @@ public class PhoneDataSet {
         return number;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
@@ -64,6 +79,7 @@ public class PhoneDataSet {
         return "PhoneDataSet{" +
                 "id=" + id +
                 ", number='" + number + '\'' +
+                ", client=" + client +
                 '}';
     }
 }
