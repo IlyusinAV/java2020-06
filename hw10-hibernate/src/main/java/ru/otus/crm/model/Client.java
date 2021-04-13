@@ -1,7 +1,7 @@
 package ru.otus.crm.model;
 
-
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,7 +9,7 @@ import java.util.List;
 public class Client implements Cloneable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -18,6 +18,10 @@ public class Client implements Cloneable {
 
     @OneToOne(targetEntity = AddressDataSet.class, cascade = CascadeType.ALL)
     private AddressDataSet address;
+
+    @OneToMany(targetEntity = PhoneDataSet.class, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "client_id")
+    private List<PhoneDataSet> phones = new ArrayList<>();
 
     public Client() {
     }
@@ -32,21 +36,23 @@ public class Client implements Cloneable {
         this.name = name;
     }
 
-    public Client(String name, AddressDataSet address) {
+    public Client(String name, AddressDataSet address, PhoneDataSet phone) {
         this.id = null;
         this.name = name;
         this.address = address;
+        this.phones.add(phone);
     }
 
-    public Client(Long id, String name, AddressDataSet address) {
+    public Client(Long id, String name, AddressDataSet address, List<PhoneDataSet> phones) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.phones = phones;
     }
 
     @Override
     public Client clone() {
-        return new Client(this.id, this.name, this.address);
+        return new Client(this.id, this.name, this.address, this.phones);
     }
 
     public Long getId() {
@@ -73,12 +79,21 @@ public class Client implements Cloneable {
         this.address = address;
     }
 
+    public List<PhoneDataSet> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<PhoneDataSet> phones) {
+        this.phones = phones;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address=" + address +
+                ", phones=" + phones +
                 '}';
     }
 }

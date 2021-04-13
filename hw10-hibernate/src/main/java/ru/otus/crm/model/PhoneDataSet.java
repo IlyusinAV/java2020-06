@@ -7,54 +7,47 @@ import java.util.Objects;
 @Table(name = "phone")
 public class PhoneDataSet {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "number")
     private String number;
 
-    @ManyToOne(targetEntity = Client.class, cascade = CascadeType.REFRESH)
+    @ManyToOne(targetEntity = Client.class)
     private Client client;
 
     public PhoneDataSet() {
     }
 
-    public PhoneDataSet(Long id, String number, Client client) {
+    public PhoneDataSet(Long id, String number) {
         this.id = id;
         this.number = number;
-        this.client = client;
     }
 
-    public PhoneDataSet(String number, Client client) {
+    public PhoneDataSet(String number) {
         this.id = null;
         this.number = number;
-        this.client = client;
-    }
-
-    @Override
-    public PhoneDataSet clone() {
-        return new PhoneDataSet(this.id, this.number, this.client);
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getNumber() {
-        return number;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
 
+    public String getNumber() {
+        return number;
+    }
+
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public Client getClient() {
+        return client;
     }
 
     public void setClient(Client client) {
@@ -79,7 +72,6 @@ public class PhoneDataSet {
         return "PhoneDataSet{" +
                 "id=" + id +
                 ", number='" + number + '\'' +
-                ", client=" + client +
                 '}';
     }
 }
