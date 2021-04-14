@@ -11,6 +11,8 @@ import ru.otus.crm.model.Client;
 import ru.otus.crm.model.PhoneDataSet;
 import ru.otus.crm.service.DbServiceClientImpl;
 
+import java.util.List;
+
 public class Homework {
     private static final Logger log = LoggerFactory.getLogger(Homework.class);
 
@@ -24,7 +26,18 @@ public class Homework {
 
         var clientTemplate = new DataTemplateHibernate<>(Client.class);
         var dbServiceClient = new DbServiceClientImpl(transactionManager, clientTemplate);
-        var client1 = new Client("dbServiceFirst", new AddressDataSet("StreetFirst"), new PhoneDataSet("1111111111"));
+
+        var address = new AddressDataSet();
+        address.setStreet("firstStreet");
+
+        var phone = new PhoneDataSet();
+        phone.setNumber("1111111111");
+
+        var client1 = new Client();
+        client1.setName("Client First");
+        client1.setAddress(address);
+        client1.setPhones(List.of(phone));
+
         var clientFirst = dbServiceClient.saveClient(client1);
     }
 }

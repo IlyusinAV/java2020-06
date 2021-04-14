@@ -14,23 +14,20 @@ public class PhoneDataSet {
     @Column(name = "number")
     private String number;
 
-    @ManyToOne(targetEntity = Client.class)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
     public PhoneDataSet() {
     }
 
-    public PhoneDataSet(Long id, String number) {
+    public PhoneDataSet(Long id, String number, Client client) {
         this.id = id;
         this.number = number;
+        this.client = client;
     }
 
-    public PhoneDataSet(String number) {
-        this.id = null;
-        this.number = number;
-    }
-
-    public Long getId() {
+     public Long getId() {
         return id;
     }
 
