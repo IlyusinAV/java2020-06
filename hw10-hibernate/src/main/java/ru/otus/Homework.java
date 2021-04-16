@@ -27,16 +27,7 @@ public class Homework {
         var clientTemplate = new DataTemplateHibernate<>(Client.class);
         var dbServiceClient = new DbServiceClientImpl(transactionManager, clientTemplate);
 
-        var address = new AddressDataSet();
-        address.setStreet("firstStreet");
-
-        var phone = new PhoneDataSet();
-        phone.setNumber("1111111111");
-
-        var client1 = new Client();
-        client1.setName("Client First");
-        client1.setAddress(address);
-        client1.setPhones(List.of(phone));
+        var client1 = new Client("dbServiceFirst", new AddressDataSet("StreetFirst"), new PhoneDataSet("1111111111"));
 
         var clientFirst = dbServiceClient.saveClient(client1);
     }

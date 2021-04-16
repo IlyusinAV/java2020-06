@@ -17,6 +17,11 @@ public class AddressDataSet {
     public AddressDataSet() {
     }
 
+    public AddressDataSet(String street) {
+        this.id = null;
+        this.street = street;
+    }
+
     public AddressDataSet(Long id, String street) {
         this.id = id;
         this.street = street;
@@ -38,7 +43,7 @@ public class AddressDataSet {
         this.street = street;
     }
 
-    @Override
+        @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

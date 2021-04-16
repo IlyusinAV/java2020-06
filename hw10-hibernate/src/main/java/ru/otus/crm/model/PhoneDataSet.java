@@ -9,30 +9,36 @@ public class PhoneDataSet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Long phone_id;
 
     @Column(name = "number")
     private String number;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
     public PhoneDataSet() {
     }
 
+    public PhoneDataSet(String number) {
+        this.phone_id = null;
+        this.number = number;
+        this.client = new Client();
+    }
+
     public PhoneDataSet(Long id, String number, Client client) {
-        this.id = id;
+        this.phone_id = id;
         this.number = number;
         this.client = client;
     }
 
-     public Long getId() {
-        return id;
+    public Long getId() {
+        return phone_id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.phone_id = id;
     }
 
     public String getNumber() {
@@ -56,18 +62,18 @@ public class PhoneDataSet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PhoneDataSet that = (PhoneDataSet) o;
-        return Objects.equals(id, that.id) && Objects.equals(number, that.number);
+        return Objects.equals(phone_id, that.phone_id) && Objects.equals(number, that.number);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, number);
+        return Objects.hash(phone_id, number);
     }
 
     @Override
     public String toString() {
         return "PhoneDataSet{" +
-                "id=" + id +
+                "phone_id=" + phone_id +
                 ", number='" + number + '\'' +
                 '}';
     }

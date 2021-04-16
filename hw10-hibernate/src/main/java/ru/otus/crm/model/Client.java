@@ -16,13 +16,25 @@ public class Client implements Cloneable {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = AddressDataSet.class, cascade = CascadeType.ALL)
     private AddressDataSet address;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client", fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = PhoneDataSet.class, cascade = CascadeType.ALL, mappedBy = "client")
     private List<PhoneDataSet> phones = new ArrayList<>();
 
     public Client() {
+    }
+
+    public Client(String name) {
+        this.id = null;
+        this.name = name;
+    }
+
+    public Client(String name, AddressDataSet address, PhoneDataSet phone) {
+        this.id = null;
+        this.name = name;
+        this.address = address;
+        this.phones.add(phone);
     }
 
     public Client(Long id, String name, AddressDataSet address, List<PhoneDataSet> phones) {
