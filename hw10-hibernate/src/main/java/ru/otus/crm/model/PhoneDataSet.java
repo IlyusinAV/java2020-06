@@ -7,38 +7,28 @@ import java.util.Objects;
 @Table(name = "phone")
 public class PhoneDataSet {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long phone_id;
+    private Long id;
 
-    @Column(name = "number")
+    @Column(name = "number", nullable = false)
     private String number;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Client.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
-    public PhoneDataSet() {
-    }
-
-    public PhoneDataSet(String number) {
-        this.phone_id = null;
-        this.number = number;
-        this.client = new Client();
-    }
-
-    public PhoneDataSet(Long id, String number, Client client) {
-        this.phone_id = id;
+    public PhoneDataSet(String number, Client client) {
         this.number = number;
         this.client = client;
     }
 
     public Long getId() {
-        return phone_id;
+        return id;
     }
 
     public void setId(Long id) {
-        this.phone_id = id;
+        this.id = id;
     }
 
     public String getNumber() {
@@ -58,23 +48,23 @@ public class PhoneDataSet {
     }
 
     @Override
+    public String toString() {
+        return "PhoneDataSet{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PhoneDataSet that = (PhoneDataSet) o;
-        return Objects.equals(phone_id, that.phone_id) && Objects.equals(number, that.number);
+        PhoneDataSet phone = (PhoneDataSet) o;
+        return Objects.equals(id, phone.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(phone_id, number);
-    }
-
-    @Override
-    public String toString() {
-        return "PhoneDataSet{" +
-                "phone_id=" + phone_id +
-                ", number='" + number + '\'' +
-                '}';
+        return Objects.hash(id);
     }
 }

@@ -7,23 +7,18 @@ import java.util.Objects;
 @Table(name = "address")
 public class AddressDataSet {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "street")
+    @Column(name = "street", nullable = false)
     private String street;
 
-    public AddressDataSet() {
-    }
+    @OneToOne(targetEntity = Client.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_id")
+    private Client client;
 
     public AddressDataSet(String street) {
-        this.id = null;
-        this.street = street;
-    }
-
-    public AddressDataSet(Long id, String street) {
-        this.id = id;
         this.street = street;
     }
 
@@ -41,19 +36,6 @@ public class AddressDataSet {
 
     public void setStreet(String street) {
         this.street = street;
-    }
-
-        @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AddressDataSet that = (AddressDataSet) o;
-        return Objects.equals(id, that.id) && Objects.equals(street, that.street);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, street);
     }
 
     @Override

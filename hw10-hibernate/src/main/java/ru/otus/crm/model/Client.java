@@ -9,17 +9,17 @@ import java.util.List;
 public class Client implements Cloneable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    @OneToOne(targetEntity = AddressDataSet.class, cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = AddressDataSet.class, cascade = CascadeType.ALL, mappedBy = "client", fetch = FetchType.LAZY)
     private AddressDataSet address;
 
-    @OneToMany(targetEntity = PhoneDataSet.class, cascade = CascadeType.ALL, mappedBy = "client")
+    @OneToMany(targetEntity = PhoneDataSet.class, cascade = CascadeType.ALL, mappedBy = "client", fetch = FetchType.LAZY)
     private List<PhoneDataSet> phones = new ArrayList<>();
 
     public Client() {
@@ -28,13 +28,6 @@ public class Client implements Cloneable {
     public Client(String name) {
         this.id = null;
         this.name = name;
-    }
-
-    public Client(String name, AddressDataSet address, PhoneDataSet phone) {
-        this.id = null;
-        this.name = name;
-        this.address = address;
-        this.phones.add(phone);
     }
 
     public Client(Long id, String name, AddressDataSet address, List<PhoneDataSet> phones) {
