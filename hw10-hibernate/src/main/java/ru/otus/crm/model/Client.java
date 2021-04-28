@@ -16,7 +16,7 @@ public class Client implements Cloneable {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(targetEntity = AddressDataSet.class, cascade = CascadeType.ALL, mappedBy = "client", fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = AddressDataSet.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private AddressDataSet address;
 
     @OneToMany(targetEntity = PhoneDataSet.class, cascade = CascadeType.ALL, mappedBy = "client", fetch = FetchType.LAZY)
@@ -25,9 +25,10 @@ public class Client implements Cloneable {
     public Client() {
     }
 
-    public Client(String name) {
+    public Client(String name, AddressDataSet address) {
         this.id = null;
         this.name = name;
+        this.address = address;
     }
 
     public Client(Long id, String name, AddressDataSet address, List<PhoneDataSet> phones) {
@@ -39,7 +40,7 @@ public class Client implements Cloneable {
 
     @Override
     public Client clone() {
-        return new Client(this.id, this.name, this.address, this.phones);
+        return this;
     }
 
     public Long getId() {

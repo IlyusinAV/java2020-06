@@ -14,10 +14,6 @@ public class AddressDataSet {
     @Column(name = "street", nullable = false)
     private String street;
 
-    @OneToOne(targetEntity = Client.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id")
-    private Client client;
-
     public AddressDataSet(String street) {
         this.street = street;
     }
