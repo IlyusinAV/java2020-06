@@ -19,4 +19,5 @@ include 'hw02-map'
 include 'hw04-gc'
 include 'hw09-jdbc'
 include 'hw10-hibernate'
+include 'hw11-cache'
 
