@@ -37,6 +37,12 @@ public class HomeWork {
             dbServiceClient.saveClient(new Client("dbServiceFirst"));
 
             var clientSecond = dbServiceClient.saveClient(new Client("dbServiceSecond"));
+
+            var clientSecondCached = dbServiceClient.getClient(clientSecond.getId())
+                    .orElseThrow(() -> new RuntimeException("Client not found, id:" + clientSecond.getId()));
+            log.info("clientSecondSelected:{}", clientSecondCached);
+
+            System.gc();
             var clientSecondSelected = dbServiceClient.getClient(clientSecond.getId())
                     .orElseThrow(() -> new RuntimeException("Client not found, id:" + clientSecond.getId()));
             log.info("clientSecondSelected:{}", clientSecondSelected);
