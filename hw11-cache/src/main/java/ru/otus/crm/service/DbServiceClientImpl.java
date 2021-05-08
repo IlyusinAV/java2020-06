@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.otus.cachehw.HwCache;
 import ru.otus.cachehw.HwListener;
-import ru.otus.cachehw.MyCache;
 import ru.otus.core.repository.DataTemplate;
 import ru.otus.crm.model.Client;
 import ru.otus.core.sessionmanager.TransactionManager;
@@ -18,20 +17,18 @@ public class DbServiceClientImpl implements DBServiceClient {
 
     private final DataTemplate<Client> clientDataTemplate;
     private final TransactionManager transactionManager;
-
-    private final HwCache<String, WeakReference<Client>> cache = new MyCache<>();
+    private final HwCache<String, Client> cache;
 
     public DbServiceClientImpl(TransactionManager transactionManager, DataTemplate<Client> clientDataTemplate) {
         this.transactionManager = transactionManager;
         this.clientDataTemplate = clientDataTemplate;
+        this.cache = null;
+    }
 
-        HwListener<String, WeakReference<Client>> listener = new HwListener<String, WeakReference<Client>>() {
-            @Override
-            public void notify(String key, WeakReference<Client> value, String action) {
-                log.info("key:{}, value:{}, action: {}", key, value, action);
-            }
-        };
-        cache.addListener(listener);
+    public DbServiceClientImpl(TransactionManager transactionManager, DataTemplate<Client> clientDataTemplate, HwCache<String, Client> cache) {
+        this.transactionManager = transactionManager;
+        this.clientDataTemplate = clientDataTemplate;
+        this.cache = cache;
     }
 
     @Override
@@ -41,39 +38,55 @@ public class DbServiceClientImpl implements DBServiceClient {
                 var clientId = clientDataTemplate.insert(connection, client);
                 var createdClient = new Client(clientId, client.getName());
                 log.info("created client: {}", createdClient);
-                cache.put(String.valueOf(clientId), new WeakReference<Client>(createdClient));
+                if (cache != null) {
+                    cache.put(getCacheKey(clientId), createdClient);
+                }
                 return createdClient;
             }
             clientDataTemplate.update(connection, client);
             log.info("updated client: {}", client);
-            cache.put(String.valueOf(client.getId()), new WeakReference<Client>(client));
+            if (cache != null) {
+                cache.put(getCacheKey(client.getId()), client);
+            }
             return client;
         });
     }
 
     @Override
     public Optional<Client> getClient(long id) {
-        var key = String.valueOf(id);
-        var clientCachedReference = cache.get(key);
-        if (clientCachedReference != null) {
-            var clientCached = clientCachedReference.get();
+        var key = getCacheKey(id);
+        var clientCached = cache != null ? cache.get(key) : null;
+        if (clientCached != null) {
             log.info("client from cache: {}", clientCached);
             return Optional.of(clientCached);
         }
-        cache.remove(key);
-        return transactionManager.doInTransaction(connection -> {
+        var clientSelected = transactionManager.doInTransaction(connection -> {
             var clientOptional = clientDataTemplate.findById(connection, id);
-            log.info("client: {}", clientOptional);
+            log.info("client from DB: {}", clientOptional);
             return clientOptional;
         });
+        if (cache != null && clientSelected.isPresent()) {
+            cache.put(key, clientSelected.get());
+        }
+        return clientSelected;
     }
 
     @Override
     public List<Client> findAll() {
-        return transactionManager.doInTransaction(connection -> {
+        var clients = transactionManager.doInTransaction(connection -> {
             var clientList = clientDataTemplate.findAll(connection);
             log.info("clientList:{}", clientList);
             return clientList;
         });
+        if (cache != null) {
+            for (Client client : clients) {
+                cache.put(getCacheKey(client.getId()), client);
+            }
+        }
+        return clients;
+    }
+
+    private String getCacheKey(long key) {
+        return String.valueOf(key);
     }
 }
