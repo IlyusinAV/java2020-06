@@ -10,6 +10,7 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import ru.otus.dao.UserDao;
 import ru.otus.helpers.FileSystemHelper;
 import ru.otus.services.TemplateProcessor;
+import ru.otus.servlet.ClientsServlet;
 import ru.otus.servlet.UsersApiServlet;
 import ru.otus.servlet.UsersServlet;
 
