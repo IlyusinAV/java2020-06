@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Clients</title>
-</head>
-<body>
-  <h1>Список клиентов</h1>
-  <table style="width: 400px">
-    <thead>
-    <tr>
-      <td style="width: 50px">Id</td>
-      <td style="width: 100px">Имя</td>
-      <td style="width: 100px">Адрес</td>
-      <td style="width: 150px">Телефоны</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>${client.id}</td>
-      <td>${client.name}</td>
-      <td>${client.address}</td>
-      <td>${client.phones}</td>
-    </tr>
-    </tbody>
-  </table>
-</body>
+  <head>
+      <meta charset="UTF-8">
+      <title>Clients</title>
+  </head>
+  <body>
+    <h1>Список клиентов</h1>
+    <table style="width: 400px">
+      <thead>
+        <tr>
+          <td style="width: 50px">Id</td>
+          <td style="width: 100px">Имя</td>
+          <td style="width: 100px">Адрес</td>
+          <td style="width: 150px">Телефоны</td>
+        </tr>
+      </thead>
+      <tbody>
+        <#list clients as row>
+          <tr>
+            <#list row as field>
+              <td>${field}</td>
+            </#list>
+          </tr>
+        </#list>
+      </tbody>
+    </table>
+  </body>
 </html>
