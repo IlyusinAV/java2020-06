@@ -15,15 +15,18 @@
           <td style="width: 150px">Телефоны</td>
         </tr>
       </thead>
-      <tbody>
-        <#list clients as row>
-          <tr>
-            <#list row as field>
-              <td>${field}</td>
-            </#list>
-          </tr>
-        </#list>
-      </tbody>
+      <#if clients?>
+        <tbody>
+          <#list clients as row>
+            <tr>
+              <#list row as field>
+                <td>${field}</td>
+              </#list>
+            </tr>
+          </#list>
+        </tbody>
+      <#else>
+      </#if>
     </table>
   </body>
 </html>

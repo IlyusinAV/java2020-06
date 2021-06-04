@@ -13,6 +13,8 @@ import ru.otus.crm.model.AddressDataSet;
 import ru.otus.crm.model.Client;
 import ru.otus.crm.model.PhoneDataSet;
 import ru.otus.crm.service.DbServiceClientImpl;
+import ru.otus.dao.ClientDao;
+import ru.otus.dao.InMemoryClientDao;
 import ru.otus.dao.InMemoryUserDao;
 import ru.otus.dao.UserDao;
 import ru.otus.server.UsersWebServer;
@@ -33,6 +35,7 @@ public class Homework {
 
     public static void main(String[] args) throws Exception {
         var dbServiceClient = initDB();
+        var clientDao = new InMemoryClientDao(dbServiceClient);
 
         var usersWebServer = initWebServer();
         usersWebServer.start();
