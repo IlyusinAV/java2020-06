@@ -13,12 +13,11 @@ import ru.otus.crm.model.AddressDataSet;
 import ru.otus.crm.model.Client;
 import ru.otus.crm.model.PhoneDataSet;
 import ru.otus.crm.service.DbServiceClientImpl;
-import ru.otus.dao.ClientDao;
 import ru.otus.dao.InMemoryClientDao;
 import ru.otus.dao.InMemoryUserDao;
 import ru.otus.dao.UserDao;
 import ru.otus.server.UsersWebServer;
-import ru.otus.server.UsersWebServerWithFilterBasedSecurity;
+import ru.otus.server.UsersWebServerSimple;
 import ru.otus.services.TemplateProcessor;
 import ru.otus.services.TemplateProcessorImpl;
 import ru.otus.services.UserAuthService;
@@ -34,8 +33,6 @@ public class Homework {
     private static final String TEMPLATES_DIR = "/templates/";
 
     public static void main(String[] args) throws Exception {
-        var dbServiceClient = initDB();
-        var clientDao = new InMemoryClientDao(dbServiceClient);
 
         var usersWebServer = initWebServer();
         usersWebServer.start();
@@ -64,10 +61,11 @@ public class Homework {
         UserDao userDao = new InMemoryUserDao();
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
         TemplateProcessor templateProcessor = new TemplateProcessorImpl(TEMPLATES_DIR);
-        UserAuthService authService = new UserAuthServiceImpl(userDao);
+        var clientDao = new InMemoryClientDao(initDB());
 
-        UsersWebServer usersWebServer = new UsersWebServerWithFilterBasedSecurity(WEB_SERVER_PORT,
-                authService, userDao, gson, templateProcessor);
+        UserAuthService authService = new UserAuthServiceImpl(userDao);
+        UsersWebServer usersWebServer = new UsersWebServerSimple(WEB_SERVER_PORT,
+                userDao, gson, templateProcessor, clientDao);
 
         return usersWebServer;
     }

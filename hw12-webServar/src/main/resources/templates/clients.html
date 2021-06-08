@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <title>Clients</title>
-  </head>
-  <body>
-    <h1>Список клиентов</h1>
-    <table style="width: 400px">
-      <thead>
-        <tr>
-          <td style="width: 50px">Id</td>
-          <td style="width: 100px">Имя</td>
-          <td style="width: 100px">Адрес</td>
-          <td style="width: 150px">Телефоны</td>
-        </tr>
-      </thead>
-      <#if clients?>
-        <tbody>
-          <#list clients as row>
-            <tr>
-              <#list row as field>
-                <td>${field}</td>
-              </#list>
-            </tr>
-          </#list>
-        </tbody>
-      <#else>
-      </#if>
-    </table>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Clients</title>
+</head>
+<body>
+<h1>Список клиентов</h1>
+<table style="width: 400px">
+    <thead>
+    <tr>
+        <td style="width: 50px">Id</td>
+        <td style="width: 100px">Имя</td>
+        <td style="width: 100px">Адрес</td>
+        <td style="width: 150px">Телефоны</td>
+    </tr>
+    </thead>
+    <#if clients?has_content>
+    <tbody>
+    <#list clients as row>
+    <tr>
+        <td>${row.id}</td>
+        <td>${row.name}</td>
+        <td>${row.address}</td>
+        <#if row.phones?has_content>
+        <td>
+        <#list row.phones as phone>
+            <p>${phone} </p>
+        </#list>
+        </td>
+        </#if>
+    </tr>
+    </#list>
+    </tbody>
+    <#else>
+    </#if>
+</table>
+</body>
 </html>

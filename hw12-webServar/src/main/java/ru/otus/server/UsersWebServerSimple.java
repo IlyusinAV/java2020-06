@@ -7,6 +7,7 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import ru.otus.dao.ClientDao;
 import ru.otus.dao.UserDao;
 import ru.otus.helpers.FileSystemHelper;
 import ru.otus.services.TemplateProcessor;
@@ -23,12 +24,14 @@ public class UsersWebServerSimple implements UsersWebServer {
     private final Gson gson;
     protected final TemplateProcessor templateProcessor;
     private final Server server;
+    private final ClientDao clientDao;
 
-    public UsersWebServerSimple(int port, UserDao userDao, Gson gson, TemplateProcessor templateProcessor) {
+    public UsersWebServerSimple(int port, UserDao userDao, Gson gson, TemplateProcessor templateProcessor, ClientDao clientDao) {
         this.userDao = userDao;
         this.gson = gson;
         this.templateProcessor = templateProcessor;
         server = new Server(port);
+        this.clientDao = clientDao;
     }
 
     @Override
@@ -56,8 +59,7 @@ public class UsersWebServerSimple implements UsersWebServer {
 
         HandlerList handlers = new HandlerList();
         handlers.addHandler(resourceHandler);
-        handlers.addHandler(applySecurity(servletContextHandler, "/users", "/api/user/*"));
-
+        handlers.addHandler(applySecurity(servletContextHandler, "/users", "/api/user/*", "/clients"));
 
         server.setHandler(handlers);
         return server;
@@ -79,6 +81,7 @@ public class UsersWebServerSimple implements UsersWebServer {
         ServletContextHandler servletContextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
         servletContextHandler.addServlet(new ServletHolder(new UsersServlet(templateProcessor, userDao)), "/users");
         servletContextHandler.addServlet(new ServletHolder(new UsersApiServlet(userDao, gson)), "/api/user/*");
+        servletContextHandler.addServlet(new ServletHolder(new ClientsServlet(templateProcessor, clientDao)), "/clients");
         return servletContextHandler;
     }
 }

@@ -18,6 +18,15 @@ public class PhoneDataSet {
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
+    public PhoneDataSet() {
+    }
+
+    public PhoneDataSet(Long id, String number, Client client) {
+        this.id = id;
+        this.number = number;
+        this.client = client;
+    }
+
     public PhoneDataSet(String number, Client client) {
         this.number = number;
         this.client = client;

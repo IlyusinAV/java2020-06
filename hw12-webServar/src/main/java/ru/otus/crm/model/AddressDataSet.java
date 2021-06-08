@@ -14,6 +14,14 @@ public class AddressDataSet {
     @Column(name = "street", nullable = false)
     private String street;
 
+    public AddressDataSet() {
+    }
+
+    public AddressDataSet(Long id, String street) {
+        this.id = id;
+        this.street = street;
+    }
+
     public AddressDataSet(String street) {
         this.street = street;
     }
