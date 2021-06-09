@@ -1,3 +1,5 @@
+<#import "ui.ftl" as ui/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +7,18 @@
     <title>Clients</title>
 </head>
 <body>
+<div>
+    <fieldset>
+        <legend>Добавить клиента</legend>
+        <form name="person" action="save" method="POST">
+            <@ui.formInput id="t1" name="firstName" label="Имя"/> <br/>
+            <@ui.formInput id="t2" name="address" label="Адрес"/> <br/>
+            <@ui.formInput id="t2" name="phone" label="Телефон"/> <br/>
+            <input type="submit" value="Сохранить" />
+        </form>
+    </fieldset>
+</div>
+
 <h1>Список клиентов</h1>
 <table style="width: 400px">
     <thead>
