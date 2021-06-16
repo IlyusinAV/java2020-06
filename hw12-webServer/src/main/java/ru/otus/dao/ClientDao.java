@@ -9,4 +9,5 @@ public interface ClientDao {
     List<Client> getClients();
     Optional<Client> findById(long id);
     Optional<Client> findByName(String name);
+    void addClient(Client client);
 }

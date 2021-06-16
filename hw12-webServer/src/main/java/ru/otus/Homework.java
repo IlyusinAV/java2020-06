@@ -12,6 +12,7 @@ import ru.otus.crm.dbmigrations.MigrationsExecutorFlyway;
 import ru.otus.crm.model.AddressDataSet;
 import ru.otus.crm.model.Client;
 import ru.otus.crm.model.PhoneDataSet;
+import ru.otus.crm.service.DbServiceClient;
 import ru.otus.crm.service.DbServiceClientImpl;
 import ru.otus.dao.InMemoryClientDao;
 import ru.otus.dao.InMemoryUserDao;
@@ -34,7 +35,9 @@ public class Homework {
 
     public static void main(String[] args) throws Exception {
 
-        var usersWebServer = initWebServer();
+        var dbServiceClient = initDB();
+
+        var usersWebServer = initWebServer(dbServiceClient);
         usersWebServer.start();
         usersWebServer.join();
     }
@@ -57,7 +60,7 @@ public class Homework {
         return dbServiceClient;
     }
 
-    private static UsersWebServer initWebServer() throws Exception {
+    private static UsersWebServer initWebServer(DbServiceClient dbServiceClient) throws Exception {
         UserDao userDao = new InMemoryUserDao();
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
         TemplateProcessor templateProcessor = new TemplateProcessorImpl(TEMPLATES_DIR);
@@ -65,7 +68,7 @@ public class Homework {
 
         UserAuthService authService = new UserAuthServiceImpl(userDao);
         UsersWebServer usersWebServer = new UsersWebServerSimple(WEB_SERVER_PORT,
-                userDao, gson, templateProcessor, clientDao);
+                userDao, gson, templateProcessor, clientDao, dbServiceClient);
 
         return usersWebServer;
     }
