@@ -5,6 +5,7 @@ import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
+import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import ru.otus.crm.service.DbServiceClient;
@@ -12,16 +13,17 @@ import ru.otus.dao.ClientDao;
 import ru.otus.dao.UserDao;
 import ru.otus.helpers.FileSystemHelper;
 import ru.otus.services.TemplateProcessor;
-import ru.otus.servlet.ClientSaveServlet;
-import ru.otus.servlet.ClientsServlet;
-import ru.otus.servlet.UsersApiServlet;
-import ru.otus.servlet.UsersServlet;
+import ru.otus.services.UserAuthService;
+import ru.otus.servlet.*;
+
+import java.util.Arrays;
 
 
 public class UsersWebServerSimple implements UsersWebServer {
     private static final String START_PAGE_NAME = "index.html";
     private static final String COMMON_RESOURCES_DIR = "static";
 
+    private final UserAuthService userAuthService;
     private final UserDao userDao;
     private final Gson gson;
     protected final TemplateProcessor templateProcessor;
@@ -29,7 +31,8 @@ public class UsersWebServerSimple implements UsersWebServer {
     private final ClientDao clientDao;
     private final DbServiceClient dbServiceClient;
 
-    public UsersWebServerSimple(int port, UserDao userDao, Gson gson, TemplateProcessor templateProcessor, ClientDao clientDao, DbServiceClient dbServiceClient) {
+    public UsersWebServerSimple(int port, UserAuthService userAuthService, UserDao userDao, Gson gson, TemplateProcessor templateProcessor, ClientDao clientDao, DbServiceClient dbServiceClient) {
+        this.userAuthService = userAuthService;
         this.userDao = userDao;
         this.gson = gson;
         this.templateProcessor = templateProcessor;
@@ -56,6 +59,13 @@ public class UsersWebServerSimple implements UsersWebServer {
         server.stop();
     }
 
+    protected Handler applySecurity(ServletContextHandler servletContextHandler, String... paths) {
+        servletContextHandler.addServlet(new ServletHolder(new LoginServlet(templateProcessor, userAuthService)), "/login");
+        AuthorizationFilter authorizationFilter = new AuthorizationFilter();
+        Arrays.stream(paths).forEachOrdered(path -> servletContextHandler.addFilter(new FilterHolder(authorizationFilter), path, null));
+        return servletContextHandler;
+    }
+
     private Server initContext() {
 
         ResourceHandler resourceHandler = createResourceHandler();
@@ -67,10 +77,6 @@ public class UsersWebServerSimple implements UsersWebServer {
 
         server.setHandler(handlers);
         return server;
-    }
-
-    protected Handler applySecurity(ServletContextHandler servletContextHandler, String ...paths) {
-        return servletContextHandler;
     }
 
     private ResourceHandler createResourceHandler() {

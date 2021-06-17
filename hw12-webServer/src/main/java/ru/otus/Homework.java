@@ -62,13 +62,13 @@ public class Homework {
 
     private static UsersWebServer initWebServer(DbServiceClient dbServiceClient) throws Exception {
         UserDao userDao = new InMemoryUserDao();
+        UserAuthService authService = new UserAuthServiceImpl(userDao);
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
         TemplateProcessor templateProcessor = new TemplateProcessorImpl(TEMPLATES_DIR);
         var clientDao = new InMemoryClientDao(initDB());
 
-        UserAuthService authService = new UserAuthServiceImpl(userDao);
         UsersWebServer usersWebServer = new UsersWebServerSimple(WEB_SERVER_PORT,
-                userDao, gson, templateProcessor, clientDao, dbServiceClient);
+                authService, userDao, gson, templateProcessor, clientDao, dbServiceClient);
 
         return usersWebServer;
     }
