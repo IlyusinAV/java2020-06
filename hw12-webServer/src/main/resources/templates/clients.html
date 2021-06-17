@@ -1,0 +1,53 @@
+<#import "ui.ftl" as ui/>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients</title>
+</head>
+<body>
+<div>
+    <fieldset>
+        <legend>Добавить клиента</legend>
+        <form name="person" action="save" method="POST">
+            <@ui.formInput id="t1" name="firstName" label="Имя"/> <br/>
+            <@ui.formInput id="t2" name="address" label="Адрес"/> <br/>
+            <@ui.formInput id="t2" name="phone" label="Телефон"/> <br/>
+            <input type="submit" value="Сохранить" />
+        </form>
+    </fieldset>
+</div>
+
+<h1>Список клиентов</h1>
+<table style="width: 400px">
+    <thead>
+    <tr>
+        <td style="width: 50px">Id</td>
+        <td style="width: 100px">Имя</td>
+        <td style="width: 100px">Адрес</td>
+        <td style="width: 150px">Телефоны</td>
+    </tr>
+    </thead>
+    <#if clients?has_content>
+    <tbody>
+    <#list clients as row>
+    <tr>
+        <td>${row.id}</td>
+        <td>${row.name}</td>
+        <td>${row.address.getStreet()}</td>
+        <#if row.phones?has_content>
+        <td>
+        <#list row.phones as phone>
+            <p>${phone.getNumber()} </p>
+        </#list>
+        </td>
+        </#if>
+    </tr>
+    </#list>
+    </tbody>
+    <#else>
+    </#if>
+</table>
+</body>
+</html>
